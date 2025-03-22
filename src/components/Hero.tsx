@@ -30,11 +30,11 @@ const Hero = () => {
 
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm animate-fade-in">
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-300/50 text-gold font-medium text-sm animate-fade-in">
             Solusi Keuangan Terpercaya Sejak 1992
           </div>
           
-          <h1 className="mb-6 overflow-hidden text-white">
+          <h1 className="mb-6 overflow-hidden text-cream">
             <span className="block overflow-hidden">
               <span className="inline-block animate-text-reveal" style={{ animationDelay: "0.1s" }}>
                 Solusi Keuangan yang
@@ -47,13 +47,13 @@ const Hero = () => {
             </span>
           </h1>
           
-          <p className="mb-8 text-lg text-luxury-800 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}>
+          <p className="mb-8 text-lg text-cream/70 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}>
             Dapatkan pinjaman cepat dengan jaminan yang aman, proses mudah, dan suku bunga 
             kompetitif. Solusi finansial untuk semua kebutuhan Anda.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 animate-fade-in opacity-0" style={{ animationDelay: "0.7s", animationFillMode: "forwards" }}>
-            <Button size="lg" className="bg-gold hover:bg-gold-dark text-luxury-200 button-shine font-medium">
+            <Button size="lg" className="bg-gold hover:bg-gold-dark text-luxury-100 button-shine font-medium">
               Ajukan Pinjaman
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
@@ -72,10 +72,10 @@ const Hero = () => {
                 )}
                 style={{ animationDelay: `${0.8 + idx * 0.1}s`, animationFillMode: "forwards" }}
               >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-luxury-200 text-gold">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-luxury-300 text-gold">
                   {feature.icon}
                 </div>
-                <span className="font-medium text-white">{feature.text}</span>
+                <span className="font-medium text-cream">{feature.text}</span>
               </div>
             ))}
           </div>

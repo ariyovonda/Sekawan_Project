@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,9 +64,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				gold: {
-					DEFAULT: '#D4AF37',
-					light: '#F5E7A3',
-					dark: '#AA8C2C'
+					DEFAULT: '#AD833C',
+					light: '#D3B87B',
+					dark: '#8C6A30'
 				},
 				financial: {
 					50: '#f0f9ff',
@@ -80,33 +81,28 @@ export default {
 					900: '#0c4a6e',
 				},
 				luxury: {
-					DEFAULT: '#43484E',
-					50: '#4D5459',
-					100: '#575D66',
-					200: '#616973',
-					300: '#6B7580',
-					400: '#75828D',
-					500: '#7F8F9A',
-					600: '#899CA7',
-					700: '#93A9B4',
-					800: '#9DB6C1',
-					900: '#A7C3CE'
+					DEFAULT: '#122954',
+					50: '#173165',
+					100: '#1C3876',
+					200: '#214088',
+					300: '#26489A',
+					400: '#2B50AB',
+					500: '#3058BD',
+					600: '#3E66C9',
+					700: '#5377D1',
+					800: '#7392DA',
+					900: '#93ACE2'
 				},
 				marine: {
-					DEFAULT: '#3B5975',
-					50: '#456B87',
-					100: '#4F7D99',
-					200: '#598FAB',
-					300: '#63A1BD',
-					400: '#6DB3CF',
-					500: '#77C5E1',
-					600: '#81D7F3'
+					DEFAULT: '#122954',
+					light: '#2A4270',
+					lighter: '#3E5A88'
 				},
 				cream: {
-					DEFAULT: '#F4E6DD',
-					50: '#F6ECE5',
-					100: '#F8F2ED',
-					200: '#FAF8F5'
+					DEFAULT: '#F6F7EC',
+					50: '#F8F9F0',
+					100: '#FAFBF4',
+					200: '#FCFDF8'
 				}
 			},
 			borderRadius: {

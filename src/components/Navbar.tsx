@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,7 +28,7 @@ const Navbar = () => {
     >
       <div className="container flex items-center justify-between">
         <div className="flex items-center">
-          <a href="/" className="text-2xl font-bold text-white">
+          <a href="/" className="text-2xl font-bold text-cream">
             <span className="text-gold">Dana</span>Sejahtera
           </a>
         </div>
@@ -39,19 +39,19 @@ const Navbar = () => {
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="animated-border text-white font-medium hover:text-gold transition-colors"
+              className="animated-border text-cream font-medium hover:text-gold transition-colors"
             >
               {item}
             </a>
           ))}
-          <Button className="bg-gold hover:bg-gold-dark text-luxury-200 button-shine">
+          <Button className="bg-gold hover:bg-gold-dark text-luxury-100 button-shine">
             Hubungi Kami
           </Button>
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-cream"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -72,13 +72,13 @@ const Navbar = () => {
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="py-2 text-white hover:text-gold transition-colors"
+              className="py-2 text-cream hover:text-gold transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {item}
             </a>
           ))}
-          <Button className="w-full bg-gold hover:bg-gold-dark text-luxury-200">
+          <Button className="w-full bg-gold hover:bg-gold-dark text-luxury-100">
             Hubungi Kami
           </Button>
         </div>

@@ -38,15 +38,15 @@ const Services = () => {
   ];
 
   return (
-    <section id="layanan" className="bg-gradient-to-b from-luxury to-luxury-50 py-24">
+    <section id="layanan" className="bg-gradient-to-b from-luxury to-luxury-200 py-24">
       <div className="content-section">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
+            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-300/50 text-gold font-medium text-sm">
               Layanan Kami
             </div>
-            <h2 className="mb-4 text-white">Solusi Finansial <span className="text-shine">Untuk Semua Kebutuhan</span></h2>
-            <p className="max-w-2xl mx-auto text-luxury-700">
+            <h2 className="mb-4 text-cream">Solusi Finansial <span className="text-shine">Untuk Semua Kebutuhan</span></h2>
+            <p className="max-w-2xl mx-auto text-cream/70">
               Kami menyediakan berbagai layanan keuangan terpercaya untuk membantu Anda
               memenuhi kebutuhan finansial dengan mudah dan aman.
             </p>
@@ -60,8 +60,8 @@ const Services = () => {
                 <div className="mb-5 icon-box">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">{service.title}</h3>
-                <p className="text-luxury-700 mb-4 flex-grow">{service.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-cream">{service.title}</h3>
+                <p className="text-cream/70 mb-4 flex-grow">{service.description}</p>
                 <a href="#" className="group inline-flex items-center text-gold font-medium">
                   <span className="animated-border">Pelajari Lebih Lanjut</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
