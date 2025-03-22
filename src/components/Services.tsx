@@ -1,5 +1,5 @@
 
-import { ArrowRight, CreditCard, Coins, Briefcase, HomeIcon, Car, Lightbulb } from "lucide-react";
+import { ArrowRight, CreditCard, Coins, HomeIcon, Car } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { cn } from "@/lib/utils";
 
@@ -16,11 +16,6 @@ const Services = () => {
       description: "Solusi pinjaman untuk usaha kecil dengan bunga rendah dan proses persetujuan yang mudah."
     },
     {
-      icon: <Briefcase className="w-8 h-8" />,
-      title: "Pembiayaan Usaha",
-      description: "Dukung perkembangan bisnis Anda dengan pinjaman modal yang fleksibel dan terjangkau."
-    },
-    {
       icon: <HomeIcon className="w-8 h-8" />,
       title: "Kredit Multiguna",
       description: "Pinjaman untuk berbagai kebutuhan dengan jaminan sertifikat properti atau kendaraan."
@@ -29,11 +24,6 @@ const Services = () => {
       icon: <Car className="w-8 h-8" />,
       title: "Gadai Kendaraan",
       description: "Gadai BPKB mobil atau motor dengan nilai taksiran tinggi dan tenor fleksibel."
-    },
-    {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Investasi Emas",
-      description: "Investasi emas batangan dengan harga transparan dan penyimpanan yang aman."
     }
   ];
 
@@ -53,7 +43,7 @@ const Services = () => {
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, idx) => (
             <AnimatedSection key={idx} delay={idx * 100}>
               <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
