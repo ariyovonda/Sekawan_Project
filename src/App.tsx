@@ -10,6 +10,7 @@ import SekawanModal from "./pages/SekawanModal";
 import RayaGoldTrader from "./pages/RayaGoldTrader";
 import PaylaterMovement from "./pages/PaylaterMovement";
 import RayaGadget from "./pages/RayaGadget";
+import ServicesPage from "./pages/Services";
 import { useState } from "react";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/layanan" element={<ServicesPage />} />
             <Route path="/layanan/sekawan-modal" element={<SekawanModal />} />
             <Route path="/layanan/raya-gold-trader" element={<RayaGoldTrader />} />
             <Route path="/layanan/paylater-movement" element={<PaylaterMovement />} />
