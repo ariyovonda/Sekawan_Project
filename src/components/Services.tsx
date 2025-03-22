@@ -1,29 +1,34 @@
 
-import { ArrowRight, CreditCard, Coins, HomeIcon, Car } from "lucide-react";
+import { ArrowRight, CreditCard, Coins, HomeIcon, Smartphone } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const Services = () => {
   const services = [
     {
       icon: <CreditCard className="w-8 h-8" />,
-      title: "Gadai Barang Berharga",
-      description: "Dapatkan pinjaman dengan jaminan perhiasan, emas, atau barang berharga lainnya dengan proses cepat."
+      title: "Sekawan Modal",
+      description: "Solusi pembiayaan usaha dengan proses cepat dan bunga rendah untuk pengembangan bisnis Anda.",
+      path: "/layanan/sekawan-modal"
     },
     {
       icon: <Coins className="w-8 h-8" />,
-      title: "Kredit Mikro",
-      description: "Solusi pinjaman untuk usaha kecil dengan bunga rendah dan proses persetujuan yang mudah."
+      title: "Raya Gold Trader",
+      description: "Investasi emas dengan harga transparan, penyimpanan aman, dan proses transaksi mudah.",
+      path: "/layanan/raya-gold-trader"
     },
     {
       icon: <HomeIcon className="w-8 h-8" />,
-      title: "Kredit Multiguna",
-      description: "Pinjaman untuk berbagai kebutuhan dengan jaminan sertifikat properti atau kendaraan."
+      title: "Paylater Movement",
+      description: "Kemudahan berbelanja dengan sistem cicilan fleksibel tanpa kartu kredit dan proses instan.",
+      path: "/layanan/paylater-movement"
     },
     {
-      icon: <Car className="w-8 h-8" />,
-      title: "Gadai Kendaraan",
-      description: "Gadai BPKB mobil atau motor dengan nilai taksiran tinggi dan tenor fleksibel."
+      icon: <Smartphone className="w-8 h-8" />,
+      title: "Raya Gadget",
+      description: "Gadai dan cicilan gadget dengan nilai taksiran tinggi dan tenor pembayaran fleksibel.",
+      path: "/layanan/raya-gadget"
     }
   ];
 
@@ -46,17 +51,19 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, idx) => (
             <AnimatedSection key={idx} delay={idx * 100}>
-              <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
-                <div className="mb-5 icon-box">
-                  {service.icon}
+              <Link to={service.path} className="block h-full">
+                <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
+                  <div className="mb-5 icon-box">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3 text-cream">{service.title}</h3>
+                  <p className="text-cream/70 mb-4 flex-grow">{service.description}</p>
+                  <div className="group inline-flex items-center text-gold font-medium">
+                    <span className="animated-border">Pelajari Lebih Lanjut</span>
+                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-cream">{service.title}</h3>
-                <p className="text-cream/70 mb-4 flex-grow">{service.description}</p>
-                <a href="#" className="group inline-flex items-center text-gold font-medium">
-                  <span className="animated-border">Pelajari Lebih Lanjut</span>
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </div>
+              </Link>
             </AnimatedSection>
           ))}
         </div>
