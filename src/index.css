@@ -1,37 +1,33 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 6%;
-    --foreground: 0 0% 98%;
+    --background: 222 8% 26%; /* #43484E */
+    --foreground: 10 29% 94%; /* #F4E6DD */
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 222 8% 26%;
+    --card-foreground: 10 29% 94%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
+    --primary: 207 47% 30%; /* #3B5975 */
+    --primary-foreground: 10 29% 94%;
 
-    --primary: 47 65% 52%;
-    --primary-foreground: 0 0% 10%;
+    --secondary: 222 8% 26%;
+    --secondary-foreground: 10 29% 94%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
+    --muted: 222 8% 26%;
+    --muted-foreground: 10 29% 80%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 47 65% 52%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 207 47% 30%;
+    --accent-foreground: 10 29% 94%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 47 65% 52%;
+    --border: 222 8% 36%;
+    --input: 222 8% 36%;
+    --ring: 207 47% 30%;
 
     --radius: 0.75rem;
   }
@@ -42,7 +38,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-luxury text-foreground;
+    @apply bg-luxury text-cream;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -67,7 +63,7 @@
 
 @layer components {
   .text-shine {
-    @apply bg-clip-text text-transparent bg-[linear-gradient(90deg,theme(colors.gold.DEFAULT),theme(colors.gold.light),theme(colors.gold.DEFAULT))] bg-300% animate-background-shine;
+    @apply bg-clip-text text-transparent bg-[linear-gradient(90deg,theme(colors.marine.DEFAULT),theme(colors.marine.light),theme(colors.marine.DEFAULT))] bg-300% animate-background-shine;
   }
   
   .icon-box {
@@ -75,7 +71,7 @@
   }
   
   .glass-card {
-    @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-lg shadow-sm;
+    @apply rounded-xl border border-marine/10 bg-marine/5 backdrop-blur-lg shadow-sm;
   }
   
   .glass-card-dark {
