@@ -1,39 +1,29 @@
 
-import { ArrowRight, CreditCard, Coins, Briefcase, HomeIcon, Car, Lightbulb } from "lucide-react";
+import { ArrowRight, CreditCard, Coins, Smartphone, ShoppingBag } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { cn } from "@/lib/utils";
 
 const Services = () => {
   const services = [
     {
-      icon: <CreditCard className="w-8 h-8" />,
-      title: "Gadai Barang Berharga",
-      description: "Dapatkan pinjaman dengan jaminan perhiasan, emas, atau barang berharga lainnya dengan proses cepat."
-    },
-    {
       icon: <Coins className="w-8 h-8" />,
-      title: "Kredit Mikro",
-      description: "Solusi pinjaman untuk usaha kecil dengan bunga rendah dan proses persetujuan yang mudah."
+      title: "Sekawan Modal",
+      description: "Solusi pembiayaan usaha dengan bunga rendah dan proses persetujuan yang mudah untuk pengembangan bisnis Anda."
     },
     {
-      icon: <Briefcase className="w-8 h-8" />,
-      title: "Pembiayaan Usaha",
-      description: "Dukung perkembangan bisnis Anda dengan pinjaman modal yang fleksibel dan terjangkau."
+      icon: <CreditCard className="w-8 h-8" />,
+      title: "Raya Gold Trader",
+      description: "Investasi emas batangan dengan harga transparan dan penyimpanan yang aman untuk masa depan yang lebih cerah."
     },
     {
-      icon: <HomeIcon className="w-8 h-8" />,
-      title: "Kredit Multiguna",
-      description: "Pinjaman untuk berbagai kebutuhan dengan jaminan sertifikat properti atau kendaraan."
+      icon: <ShoppingBag className="w-8 h-8" />,
+      title: "Paylater Movement",
+      description: "Nikmati kemudahan berbelanja dengan cicilan ringan dan proses pengajuan yang cepat tanpa kartu kredit."
     },
     {
-      icon: <Car className="w-8 h-8" />,
-      title: "Gadai Kendaraan",
-      description: "Gadai BPKB mobil atau motor dengan nilai taksiran tinggi dan tenor fleksibel."
-    },
-    {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Investasi Emas",
-      description: "Investasi emas batangan dengan harga transparan dan penyimpanan yang aman."
+      icon: <Smartphone className="w-8 h-8" />,
+      title: "Raya Gadget",
+      description: "Dapatkan gadget impian dengan cicilan terjangkau dan persyaratan mudah untuk mengikuti perkembangan teknologi."
     }
   ];
 
@@ -53,7 +43,7 @@ const Services = () => {
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {services.map((service, idx) => (
             <AnimatedSection key={idx} delay={idx * 100}>
               <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
