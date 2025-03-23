@@ -64,9 +64,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				gold: {
-					DEFAULT: '#AD833C',
-					light: '#D3B87B',
-					dark: '#8C6A30'
+					DEFAULT: '#D4AF37',
+					light: '#F5E7A3',
+					dark: '#AA8C2C'
 				},
 				financial: {
 					50: '#f0f9ff',
@@ -79,30 +79,6 @@ export default {
 					700: '#0369a1',
 					800: '#075985',
 					900: '#0c4a6e',
-				},
-				luxury: {
-					DEFAULT: '#122954',
-					50: '#173165',
-					100: '#1C3876',
-					200: '#214088',
-					300: '#26489A',
-					400: '#2B50AB',
-					500: '#3058BD',
-					600: '#3E66C9',
-					700: '#5377D1',
-					800: '#7392DA',
-					900: '#93ACE2'
-				},
-				marine: {
-					DEFAULT: '#122954',
-					light: '#2A4270',
-					lighter: '#3E5A88'
-				},
-				cream: {
-					DEFAULT: '#F6F7EC',
-					50: '#F8F9F0',
-					100: '#FAFBF4',
-					200: '#FCFDF8'
 				}
 			},
 			borderRadius: {

@@ -23,18 +23,17 @@ const Hero = () => {
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-luxury-100 to-luxury"></div>
-        <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-financial-200/50 filter blur-3xl"></div>
         <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-gold/10 filter blur-3xl"></div>
       </div>
 
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-300/50 text-gold font-medium text-sm animate-fade-in">
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-financial-100 text-financial-800 font-medium text-sm animate-fade-in">
             Solusi Keuangan Terpercaya Sejak 1992
           </div>
           
-          <h1 className="mb-6 overflow-hidden text-cream">
+          <h1 className="mb-6 overflow-hidden">
             <span className="block overflow-hidden">
               <span className="inline-block animate-text-reveal" style={{ animationDelay: "0.1s" }}>
                 Solusi Keuangan yang
@@ -47,17 +46,17 @@ const Hero = () => {
             </span>
           </h1>
           
-          <p className="mb-8 text-lg text-cream/70 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}>
+          <p className="mb-8 text-lg text-financial-700 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}>
             Dapatkan pinjaman cepat dengan jaminan yang aman, proses mudah, dan suku bunga 
             kompetitif. Solusi finansial untuk semua kebutuhan Anda.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 animate-fade-in opacity-0" style={{ animationDelay: "0.7s", animationFillMode: "forwards" }}>
-            <Button size="lg" className="bg-gold hover:bg-gold-dark text-luxury-100 button-shine font-medium">
+            <Button size="lg" className="bg-financial-700 hover:bg-financial-800 button-shine font-medium">
               Ajukan Pinjaman
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
-            <Button size="lg" variant="outline" className="border-gold/50 text-gold hover:bg-luxury-100">
+            <Button size="lg" variant="outline" className="border-financial-300 text-financial-800 hover:bg-financial-50">
               Simulasi Kredit
             </Button>
           </div>
@@ -67,15 +66,15 @@ const Hero = () => {
               <div 
                 key={idx} 
                 className={cn(
-                  "flex items-center justify-center gap-2 py-3 px-4 rounded-lg glass-card-dark",
+                  "flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-white shadow-sm border border-financial-100",
                   "animate-fade-in opacity-0"
                 )}
                 style={{ animationDelay: `${0.8 + idx * 0.1}s`, animationFillMode: "forwards" }}
               >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-luxury-300 text-gold">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-financial-100 text-financial-700">
                   {feature.icon}
                 </div>
-                <span className="font-medium text-cream">{feature.text}</span>
+                <span className="font-medium text-financial-800">{feature.text}</span>
               </div>
             ))}
           </div>
