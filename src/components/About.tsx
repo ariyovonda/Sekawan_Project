@@ -35,7 +35,7 @@ const About = () => {
   ];
 
   return (
-    <section id="tentang" className="py-24 bg-luxury text-cream">
+    <section id="tentang" className="py-24 bg-luxury text-white">
       <div className="content-section">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection className="order-2 lg:order-1">
@@ -47,16 +47,16 @@ const About = () => {
               <div className="relative z-10">
                 <Badge className="mb-5 bg-gold/20 text-gold hover:bg-gold/30">Sejak 1992</Badge>
                 <h3 className="text-2xl font-bold mb-4">Mitra Finansial Terpercaya</h3>
-                <p className="mb-6 text-cream/70">
+                <p className="mb-6 text-luxury-700">
                   Selama lebih dari 30 tahun, kami telah membantu jutaan masyarakat Indonesia 
                   untuk mendapatkan solusi finansial yang tepat bagi kebutuhan mereka.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-4">
                   {stats.map((stat, idx) => (
-                    <div key={idx} className="bg-luxury-300/30 rounded-lg p-4 backdrop-blur-sm">
+                    <div key={idx} className="bg-luxury-100/50 rounded-lg p-4 backdrop-blur-sm">
                       <div className="text-2xl font-bold text-gold mb-1">{stat.value}</div>
-                      <div className="text-sm text-cream/70">{stat.label}</div>
+                      <div className="text-sm text-luxury-700">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -66,11 +66,11 @@ const About = () => {
           
           <AnimatedSection className="order-1 lg:order-2">
             <div className="text-center lg:text-left">
-              <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-300/50 text-gold font-medium text-sm">
+              <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
                 Tentang Kami
               </div>
               <h2 className="mb-6">Membangun <span className="text-shine">Kepercayaan</span><br />Melalui Layanan Berkualitas</h2>
-              <p className="text-cream/70 mb-8">
+              <p className="text-luxury-700 mb-8">
                 DanaSejahtera adalah lembaga keuangan bukan bank yang menyediakan layanan pinjaman dengan 
                 jaminan dan investasi emas untuk memenuhi kebutuhan finansial masyarakat Indonesia.
               </p>
@@ -78,12 +78,12 @@ const About = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
                 {values.map((value, idx) => (
                   <div key={idx} className="flex">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-luxury-300/70 text-gold shrink-0 mt-1">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-luxury-100 text-gold shrink-0 mt-1">
                       {value.icon}
                     </div>
                     <div className="ml-4">
                       <h4 className="text-xl font-semibold mb-2">{value.title}</h4>
-                      <p className="text-cream/70">{value.description}</p>
+                      <p className="text-luxury-700">{value.description}</p>
                     </div>
                   </div>
                 ))}
