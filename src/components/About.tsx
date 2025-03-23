@@ -5,34 +5,31 @@ import AnimatedSection from "./AnimatedSection";
 
 const About = () => {
   const stats = [
-    { label: "Tahun Pengalaman", value: "30+" },
-    { label: "Cabang di Indonesia", value: "500+" },
-    { label: "Nasabah Aktif", value: "2.5 Juta+" },
-    { label: "Tingkat Kepuasan", value: "95%" },
+    { label: "Customers Trust Us", value: "10.000+" },
   ];
 
   const values = [
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "Integritas",
-      description: "Kami menjalankan bisnis dengan standar etika tinggi dan transparansi dalam setiap layanan.",
+      title: "Integrity",
+      description: "We run a business with high ethical standards and transparency in every service.",
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
-      title: "Inovasi",
-      description: "Terus mengembangkan solusi keuangan yang relevan dengan kebutuhan masyarakat modern.",
+      title: "Innovation",
+      description: "Continue to develop relevant financial solutions with the needs of modern society.",
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Kepedulian",
-      description: "Berkomitmen untuk memberikan layanan terbaik dan membantu masyarakat dalam setiap kebutuhan finansial.",
+      title: "Concern",
+      description: "Committed to providing the best service and assisting the community in every financial need.",
     },
     {
       icon: <Award className="w-6 h-6" />,
-      title: "Profesionalisme",
-      description: "Layanan kami didukung oleh tim profesional yang berpengalaman di bidang keuangan.",
+      title: "Professionalism",
+      description: "Our services are supported by a team of professionals who are experienced in the field of finance.",
     },
-  ];
+  ];    
 
   return (
     <section id="tentang" className="py-24 bg-luxury text-white">
@@ -45,11 +42,10 @@ const About = () => {
               <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
               
               <div className="relative z-10">
-                <Badge className="mb-5 bg-gold/20 text-gold hover:bg-gold/30">Sejak 1992</Badge>
-                <h3 className="text-2xl font-bold mb-4">Mitra Finansial Terpercaya</h3>
+                
+                <h3 className="text-2xl font-bold mb-4">Trusted Financial Partner</h3>
                 <p className="mb-6 text-luxury-700">
-                  Selama lebih dari 30 tahun, kami telah membantu jutaan masyarakat Indonesia 
-                  untuk mendapatkan solusi finansial yang tepat bagi kebutuhan mereka.
+                  We have helped Indonesians to find the right financial solution for their trading needs.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-4">
@@ -63,16 +59,16 @@ const About = () => {
               </div>
             </div>
           </AnimatedSection>
-          
+
           <AnimatedSection className="order-1 lg:order-2">
             <div className="text-center lg:text-left">
               <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
-                Tentang Kami
+                About Us
               </div>
-              <h2 className="mb-6">Membangun <span className="text-shine">Kepercayaan</span><br />Melalui Layanan Berkualitas</h2>
+              <h2 className="mb-6">Building <span className="text-shine">Trust</span><br />with <span className="text-shine">Quality Services</span></h2>
               <p className="text-luxury-700 mb-8">
-                DanaSejahtera adalah lembaga keuangan bukan bank yang menyediakan layanan pinjaman dengan 
-                jaminan dan investasi emas untuk memenuhi kebutuhan finansial masyarakat Indonesia.
+                Raya Gold provides easy access for anyone who wants to trade gold,
+                throughout Indonesia.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
