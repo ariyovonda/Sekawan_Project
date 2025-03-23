@@ -1,95 +1,69 @@
 
-import { Badge } from "@/components/ui/badge";
-import { Award, TrendingUp, Users, Shield } from "lucide-react";
+import { Shield, TrendingUp, Users, Award } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const About = () => {
-  const stats = [
-    { label: "Tahun Pengalaman", value: "30+" },
-    { label: "Cabang di Indonesia", value: "500+" },
-    { label: "Nasabah Aktif", value: "2.5 Juta+" },
-    { label: "Tingkat Kepuasan", value: "95%" },
-  ];
-
   const values = [
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "Integritas",
-      description: "Kami menjalankan bisnis dengan standar etika tinggi dan transparansi dalam setiap layanan.",
+      title: "Integrity",
+      description: "We run our business with high ethical standards and transparency in every service.",
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
-      title: "Inovasi",
-      description: "Terus mengembangkan solusi keuangan yang relevan dengan kebutuhan masyarakat modern.",
+      title: "Innovation",
+      description: "Continuously developing financial solutions relevant to the needs of modern society.",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Kepedulian",
-      description: "Berkomitmen untuk memberikan layanan terbaik dan membantu masyarakat dalam setiap kebutuhan finansial.",
+      description: "Committed to providing the best service and helping the community in every kind of need.",
     },
     {
       icon: <Award className="w-6 h-6" />,
-      title: "Profesionalisme",
-      description: "Layanan kami didukung oleh tim profesional yang berpengalaman di bidang keuangan.",
+      title: "Professionalism",
+      description: "Our services are backed by a professional team of experienced financial specialists.",
     },
   ];
 
   return (
-    <section id="tentang" className="py-24 bg-luxury text-white">
-      <div className="content-section">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <AnimatedSection className="order-2 lg:order-1">
-            <div className="glass-card-dark p-8 relative overflow-hidden">
-              {/* Abstract shapes */}
-              <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
-              <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
-              
-              <div className="relative z-10">
-                <Badge className="mb-5 bg-gold/20 text-gold hover:bg-gold/30">Sejak 1992</Badge>
-                <h3 className="text-2xl font-bold mb-4">Mitra Finansial Terpercaya</h3>
-                <p className="mb-6 text-luxury-700">
-                  Selama lebih dari 30 tahun, kami telah membantu jutaan masyarakat Indonesia 
-                  untuk mendapatkan solusi finansial yang tepat bagi kebutuhan mereka.
-                </p>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  {stats.map((stat, idx) => (
-                    <div key={idx} className="bg-luxury-100/50 rounded-lg p-4 backdrop-blur-sm">
-                      <div className="text-2xl font-bold text-gold mb-1">{stat.value}</div>
-                      <div className="text-sm text-luxury-700">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-          
-          <AnimatedSection className="order-1 lg:order-2">
-            <div className="text-center lg:text-left">
-              <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
-                Tentang Kami
-              </div>
-              <h2 className="mb-6">Membangun <span className="text-shine">Kepercayaan</span><br />Melalui Layanan Berkualitas</h2>
-              <p className="text-luxury-700 mb-8">
-                DanaSejahtera adalah lembaga keuangan bukan bank yang menyediakan layanan pinjaman dengan 
-                jaminan dan investasi emas untuk memenuhi kebutuhan finansial masyarakat Indonesia.
+    <section id="about" className="py-24 bg-black">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <div className="section-badge">About</div>
+          <h2 className="section-title">Building <span className="text-gradient">Trust</span> with <span className="text-gradient">Quality Services</span></h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+          <div className="lg:col-span-2">
+            <div className="bg-black/50 border border-neutral-800 rounded-lg p-6 h-full">
+              <h3 className="text-xl font-bold mb-4">Trusted Financial Partner</h3>
+              <p className="text-neutral-400 mb-6">
+                We have helped millions of users find the right financial solution for their pressing needs.
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
-                {values.map((value, idx) => (
-                  <div key={idx} className="flex">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-luxury-100 text-gold shrink-0 mt-1">
-                      {value.icon}
-                    </div>
-                    <div className="ml-4">
-                      <h4 className="text-xl font-semibold mb-2">{value.title}</h4>
-                      <p className="text-luxury-700">{value.description}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="bg-black/70 border border-neutral-800 rounded-lg p-4">
+                <div className="text-2xl font-bold text-yellow-500 mb-1">10,000+</div>
+                <div className="text-sm text-neutral-400">Customers trust us</div>
               </div>
             </div>
-          </AnimatedSection>
+          </div>
+          
+          <div className="lg:col-span-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {values.map((value, idx) => (
+                <div key={idx} className="flex gap-4 bg-black/50 border border-neutral-800 rounded-lg p-5">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/70 text-yellow-500 border border-neutral-800 shrink-0">
+                    {value.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-2">{value.title}</h4>
+                    <p className="text-neutral-400 text-sm">{value.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

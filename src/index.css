@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 6%;
+    --background: 0 0% 5%;
     --foreground: 0 0% 98%;
 
     --card: 0 0% 8%;
@@ -14,7 +14,7 @@
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 47 65% 52%;
+    --primary: 49 90% 50%;
     --primary-foreground: 0 0% 10%;
 
     --secondary: 0 0% 12%;
@@ -23,7 +23,7 @@
     --muted: 0 0% 10%;
     --muted-foreground: 0 0% 70%;
 
-    --accent: 47 65% 52%;
+    --accent: 49 90% 50%;
     --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84% 60%;
@@ -31,9 +31,9 @@
 
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 47 65% 52%;
+    --ring: 49 90% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -42,7 +42,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-luxury text-foreground;
+    @apply bg-black text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -58,7 +58,7 @@
     @apply text-2xl leading-tight;
   }
   p {
-    @apply leading-relaxed;
+    @apply leading-relaxed text-gray-400;
   }
   section {
     @apply py-16 md:py-24;
@@ -66,49 +66,44 @@
 }
 
 @layer components {
-  .text-shine {
-    @apply bg-clip-text text-transparent bg-[linear-gradient(90deg,theme(colors.gold.DEFAULT),theme(colors.gold.light),theme(colors.gold.DEFAULT))] bg-300% animate-background-shine;
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600;
+  }
+  
+  .primary-button {
+    @apply px-5 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-black font-medium rounded-full transition-all duration-200;
+  }
+  
+  .outline-button {
+    @apply px-5 py-2.5 border border-yellow-500/50 hover:border-yellow-500 text-yellow-500 font-medium rounded-full transition-all duration-200;
+  }
+  
+  .icon-button {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 border border-yellow-500/20 bg-black/40 hover:bg-black/60 text-white font-medium rounded-full transition-all duration-200;
+  }
+  
+  .service-card {
+    @apply bg-black/50 border border-neutral-800 rounded-lg p-6 hover:border-yellow-500/50 transition-all duration-300;
   }
   
   .icon-box {
-    @apply inline-flex items-center justify-center w-12 h-12 rounded-full bg-luxury-100 text-gold;
+    @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/50 text-yellow-500 border border-neutral-800;
   }
   
-  .glass-card {
-    @apply rounded-xl border border-white/10 bg-white/5 backdrop-blur-lg shadow-sm;
+  .section-badge {
+    @apply inline-block px-4 py-1 text-xs font-medium uppercase tracking-wider text-yellow-500 bg-yellow-500/10 rounded-full mb-4;
   }
   
-  .glass-card-dark {
-    @apply rounded-xl border border-luxury-100 bg-luxury-50/30 backdrop-blur-md shadow-md;
+  .section-title {
+    @apply text-3xl font-bold mb-6;
   }
   
-  .animated-border {
-    @apply relative;
+  .section-description {
+    @apply max-w-2xl mx-auto text-neutral-400 mb-10;
   }
   
-  .animated-border::after {
-    content: '';
-    @apply absolute block w-0 h-0.5 transition-all duration-500 bg-gold bottom-0 left-0;
-  }
-  
-  .animated-border:hover::after {
-    @apply w-full;
-  }
-  
-  .button-shine {
-    @apply relative overflow-hidden;
-  }
-  
-  .button-shine::before {
-    content: '';
-    @apply absolute top-0 left-[-100%] w-[100%] h-full bg-white/10 transform skew-x-[-25deg] transition-all duration-700;
-  }
-  
-  .button-shine:hover::before {
-    @apply left-[150%];
-  }
-  
-  .content-section {
+  .container-custom {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
+

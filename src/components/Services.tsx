@@ -1,71 +1,63 @@
 
-import { ArrowRight, CreditCard, Coins, Briefcase, HomeIcon, Car, Lightbulb } from "lucide-react";
+import { ArrowRight, CreditCard, Coins, HomeIcon, Smartphone } from "lucide-react";
+import { Link } from "react-router-dom";
 import AnimatedSection from "./AnimatedSection";
-import { cn } from "@/lib/utils";
 
 const Services = () => {
   const services = [
     {
-      icon: <CreditCard className="w-8 h-8" />,
-      title: "Gadai Barang Berharga",
-      description: "Dapatkan pinjaman dengan jaminan perhiasan, emas, atau barang berharga lainnya dengan proses cepat."
+      icon: <CreditCard className="w-6 h-6" />,
+      title: "Sekawan Modal",
+      description: "We provide low-cost capital loans to help you jumpstart your business with easy terms and affordable interest.",
+      path: "/services/sekawan-modal"
     },
     {
-      icon: <Coins className="w-8 h-8" />,
-      title: "Kredit Mikro",
-      description: "Solusi pinjaman untuk usaha kecil dengan bunga rendah dan proses persetujuan yang mudah."
+      icon: <Coins className="w-6 h-6" />,
+      title: "Raya Gold Trader",
+      description: "100% safe investment for safe additional income. Trade gold easily with a fast and flexible process.",
+      path: "/services/raya-gold-trader"
     },
     {
-      icon: <Briefcase className="w-8 h-8" />,
-      title: "Pembiayaan Usaha",
-      description: "Dukung perkembangan bisnis Anda dengan pinjaman modal yang fleksibel dan terjangkau."
+      icon: <HomeIcon className="w-6 h-6" />,
+      title: "Paylater Movement",
+      description: "Fast cashless loans, which allows you to buy consumer items according to your needs.",
+      path: "/services/paylater-movement"
     },
     {
-      icon: <HomeIcon className="w-8 h-8" />,
-      title: "Kredit Multiguna",
-      description: "Pinjaman untuk berbagai kebutuhan dengan jaminan sertifikat properti atau kendaraan."
-    },
-    {
-      icon: <Car className="w-8 h-8" />,
-      title: "Gadai Kendaraan",
-      description: "Gadai BPKB mobil atau motor dengan nilai taksiran tinggi dan tenor fleksibel."
-    },
-    {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Investasi Emas",
-      description: "Investasi emas batangan dengan harga transparan dan penyimpanan yang aman."
+      icon: <Smartphone className="w-6 h-6" />,
+      title: "Raya Gadget",
+      description: "Utilize your new and used gadgets as collateral to borrow at competitive rates with extended repayment terms.",
+      path: "/services/raya-gadget"
     }
   ];
 
   return (
-    <section id="layanan" className="bg-gradient-to-b from-luxury to-luxury-50 py-24">
-      <div className="content-section">
+    <section id="layanan" className="bg-black py-24">
+      <div className="container-custom">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
-              Layanan Kami
-            </div>
-            <h2 className="mb-4 text-white">Solusi Finansial <span className="text-shine">Untuk Semua Kebutuhan</span></h2>
-            <p className="max-w-2xl mx-auto text-luxury-700">
-              Kami menyediakan berbagai layanan keuangan terpercaya untuk membantu Anda
-              memenuhi kebutuhan finansial dengan mudah dan aman.
+            <div className="section-badge">Our Services</div>
+            <h2 className="section-title">Financial Solutions for <span className="text-gradient">All Needs</span></h2>
+            <p className="section-description">
+              We provide a wide range of reliable financial services to help you meet your 
+              financial needs easily and securely.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, idx) => (
             <AnimatedSection key={idx} delay={idx * 100}>
-              <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
+              <div className="service-card h-full flex flex-col">
                 <div className="mb-5 icon-box">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-white">{service.title}</h3>
-                <p className="text-luxury-700 mb-4 flex-grow">{service.description}</p>
-                <a href="#" className="group inline-flex items-center text-gold font-medium">
-                  <span className="animated-border">Pelajari Lebih Lanjut</span>
+                <p className="text-gray-400 mb-4 flex-grow text-sm">{service.description}</p>
+                <Link to={service.path} className="group inline-flex items-center text-yellow-500 font-medium text-sm">
+                  <span>Learn More</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
             </AnimatedSection>
           ))}
