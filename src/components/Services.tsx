@@ -67,18 +67,6 @@ const Services = () => {
             </AnimatedSection>
           ))}
         </div>
-        
-        <AnimatedSection delay={400}>
-          <div className="mt-12 text-center">
-            <Link 
-              to="/layanan" 
-              className="inline-flex items-center bg-luxury-300/30 hover:bg-luxury-300/50 transition-colors text-gold px-6 py-3 rounded-lg font-medium"
-            >
-              Lihat Semua Layanan
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   );
