@@ -38,15 +38,15 @@ const Services = () => {
   ];
 
   return (
-    <section id="layanan" className="bg-gradient-to-b from-white to-financial-50 py-24">
+    <section id="layanan" className="bg-gradient-to-b from-luxury to-luxury-50 py-24">
       <div className="content-section">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-financial-100 text-financial-800 font-medium text-sm">
+            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
               Layanan Kami
             </div>
-            <h2 className="mb-4 text-financial-900">Solusi Finansial <span className="text-shine">Untuk Semua Kebutuhan</span></h2>
-            <p className="max-w-2xl mx-auto text-financial-600">
+            <h2 className="mb-4 text-white">Solusi Finansial <span className="text-shine">Untuk Semua Kebutuhan</span></h2>
+            <p className="max-w-2xl mx-auto text-luxury-700">
               Kami menyediakan berbagai layanan keuangan terpercaya untuk membantu Anda
               memenuhi kebutuhan finansial dengan mudah dan aman.
             </p>
@@ -56,13 +56,13 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, idx) => (
             <AnimatedSection key={idx} delay={idx * 100}>
-              <div className="bg-white rounded-xl p-6 shadow-sm border border-financial-100 hover:shadow-md transition-all h-full flex flex-col">
-                <div className="mb-5 icon-box bg-financial-50 text-financial-600">
+              <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
+                <div className="mb-5 icon-box">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-financial-800">{service.title}</h3>
-                <p className="text-financial-600 mb-4 flex-grow">{service.description}</p>
-                <a href="#" className="group inline-flex items-center text-financial-700 font-medium">
+                <h3 className="text-xl font-semibold mb-3 text-white">{service.title}</h3>
+                <p className="text-luxury-700 mb-4 flex-grow">{service.description}</p>
+                <a href="#" className="group inline-flex items-center text-gold font-medium">
                   <span className="animated-border">Pelajari Lebih Lanjut</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>
