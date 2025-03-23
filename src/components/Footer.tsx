@@ -1,34 +1,25 @@
-
-import { Facebook, Instagram, Twitter, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   const productLinks = [
-    "Gadai Perhiasan", 
-    "Gadai Elektronik", 
-    "Kredit Mikro", 
-    "Pembiayaan Usaha", 
-    "Kredit Multiguna", 
-    "Investasi Emas"
+    "Sekawan Modal", 
+    "Raya Gold Trader", 
+    "Paylater Movement", 
+    "Raya Gadget",
   ];
   
   const companyLinks = [
-    "Tentang Kami", 
-    "Karir", 
-    "Berita", 
-    "Kebijakan Privasi", 
-    "Syarat & Ketentuan", 
-    "Hubungi Kami"
+    "About Us", 
+    "Contact Us", 
+    "Privacy Policy", 
+    "Terms & Conditions",
   ];
   
   const socialLinks = [
-    { icon: <Facebook className="w-5 h-5" />, name: "Facebook" },
-    { icon: <Instagram className="w-5 h-5" />, name: "Instagram" },
-    { icon: <Twitter className="w-5 h-5" />, name: "Twitter" },
-    { icon: <Linkedin className="w-5 h-5" />, name: "LinkedIn" },
-    { icon: <Youtube className="w-5 h-5" />, name: "YouTube" },
+    { icon: <MessageCircle className="w-5 h-5" />, name: "WhatsApp" },
   ];
 
   return (

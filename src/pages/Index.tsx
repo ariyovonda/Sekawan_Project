@@ -42,7 +42,8 @@ const Index = () => {
         <Services />
         <About />
         <Testimonials />
-        <CTA />
+        {/* CTA component commented out to hide from output */}
+        {/* <CTA /> */}
       </main>
       <Footer />
     </div>
