@@ -5,35 +5,32 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 98%;
+    --background: 220 65% 20%; /* #122954 */
+    --foreground: 60 36% 95%; /* #F6F7EC */
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 220 65% 20%;
+    --card-foreground: 60 36% 95%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
+    --primary: 39 47% 46%; /* #AD833C */
+    --primary-foreground: 60 36% 95%;
 
-    --primary: 49 90% 50%;
-    --primary-foreground: 0 0% 10%;
+    --secondary: 220 65% 25%;
+    --secondary-foreground: 60 36% 95%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
+    --muted: 220 65% 20%;
+    --muted-foreground: 60 36% 80%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 49 90% 50%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 39 47% 46%;
+    --accent-foreground: 60 36% 95%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 49 90% 50%;
+    --border: 220 65% 30%;
+    --input: 220 65% 30%;
+    --ring: 39 47% 46%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 }
 
@@ -42,7 +39,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-black text-foreground;
+    @apply bg-luxury text-cream;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   h1, h2, h3, h4, h5, h6 {
@@ -58,7 +55,7 @@
     @apply text-2xl leading-tight;
   }
   p {
-    @apply leading-relaxed text-gray-400;
+    @apply leading-relaxed;
   }
   section {
     @apply py-16 md:py-24;
@@ -66,44 +63,49 @@
 }
 
 @layer components {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-yellow-600;
-  }
-  
-  .primary-button {
-    @apply px-5 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-black font-medium rounded-full transition-all duration-200;
-  }
-  
-  .outline-button {
-    @apply px-5 py-2.5 border border-yellow-500/50 hover:border-yellow-500 text-yellow-500 font-medium rounded-full transition-all duration-200;
-  }
-  
-  .icon-button {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 border border-yellow-500/20 bg-black/40 hover:bg-black/60 text-white font-medium rounded-full transition-all duration-200;
-  }
-  
-  .service-card {
-    @apply bg-black/50 border border-neutral-800 rounded-lg p-6 hover:border-yellow-500/50 transition-all duration-300;
+  .text-shine {
+    @apply bg-clip-text text-transparent bg-[linear-gradient(90deg,theme(colors.gold.DEFAULT),theme(colors.gold.light),theme(colors.gold.DEFAULT))] bg-300% animate-background-shine;
   }
   
   .icon-box {
-    @apply inline-flex items-center justify-center w-10 h-10 rounded-full bg-black/50 text-yellow-500 border border-neutral-800;
+    @apply inline-flex items-center justify-center w-12 h-12 rounded-full bg-luxury-100 text-gold;
   }
   
-  .section-badge {
-    @apply inline-block px-4 py-1 text-xs font-medium uppercase tracking-wider text-yellow-500 bg-yellow-500/10 rounded-full mb-4;
+  .glass-card {
+    @apply rounded-xl border border-gold/10 bg-luxury-100/30 backdrop-blur-lg shadow-sm;
   }
   
-  .section-title {
-    @apply text-3xl font-bold mb-6;
+  .glass-card-dark {
+    @apply rounded-xl border border-gold/20 bg-luxury-200/50 backdrop-blur-md shadow-md;
   }
   
-  .section-description {
-    @apply max-w-2xl mx-auto text-neutral-400 mb-10;
+  .animated-border {
+    @apply relative;
   }
   
-  .container-custom {
+  .animated-border::after {
+    content: '';
+    @apply absolute block w-0 h-0.5 transition-all duration-500 bg-gold bottom-0 left-0;
+  }
+  
+  .animated-border:hover::after {
+    @apply w-full;
+  }
+  
+  .button-shine {
+    @apply relative overflow-hidden;
+  }
+  
+  .button-shine::before {
+    content: '';
+    @apply absolute top-0 left-[-100%] w-[100%] h-full bg-white/10 transform skew-x-[-25deg] transition-all duration-700;
+  }
+  
+  .button-shine:hover::before {
+    @apply left-[150%];
+  }
+  
+  .content-section {
     @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
-

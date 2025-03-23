@@ -1,8 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,43 +20,38 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
         isScrolled 
-          ? "bg-black/90 backdrop-blur-sm border-b border-neutral-800" 
+          ? "bg-luxury-100/80 backdrop-blur-md border-b border-luxury-200/50" 
           : "bg-transparent"
       )}
     >
-      <div className="container-custom flex items-center justify-between">
+      <div className="container flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="text-2xl font-bold text-white uppercase">
-            Sekawan
-          </Link>
+          <a href="/" className="text-2xl font-bold text-cream">
+            <span className="text-gold">Dana</span>Sejahtera
+          </a>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {[
-            { name: "Home", path: "/" },
-            { name: "Services", path: "/services" },
-            { name: "About", path: "/about" },
-            { name: "Testimonial", path: "/#testimonial" }
-          ].map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="text-white hover:text-yellow-500 transition-colors text-sm"
+        <nav className="hidden md:flex items-center space-x-8">
+          {["Beranda", "Layanan", "Tentang", "Cabang", "Karier"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="animated-border text-cream font-medium hover:text-gold transition-colors"
             >
-              {item.name}
-            </Link>
+              {item}
+            </a>
           ))}
-          <Link to="/contact" className="primary-button">
-            Contact Us
-          </Link>
+          <Button className="bg-gold hover:bg-gold-dark text-luxury-100 button-shine">
+            Hubungi Kami
+          </Button>
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-cream"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -66,31 +61,26 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden absolute w-full bg-black border-t border-neutral-800 transition-all duration-300 ease-in-out transform",
+          "md:hidden absolute w-full bg-luxury-100 border-t border-luxury-200/50 shadow-lg transition-all duration-300 ease-in-out transform",
           isMobileMenuOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"
         )}
       >
         <div className="container py-4 flex flex-col space-y-4">
-          {[
-            { name: "Home", path: "/" },
-            { name: "Services", path: "/services" },
-            { name: "About", path: "/about" },
-            { name: "Testimonial", path: "/#testimonial" }
-          ].map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="py-2 text-white hover:text-yellow-500 transition-colors"
+          {["Beranda", "Layanan", "Tentang", "Cabang", "Karier"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="py-2 text-cream hover:text-gold transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {item.name}
-            </Link>
+              {item}
+            </a>
           ))}
-          <Link to="/contact" className="primary-button w-full text-center">
-            Contact Us
-          </Link>
+          <Button className="w-full bg-gold hover:bg-gold-dark text-luxury-100">
+            Hubungi Kami
+          </Button>
         </div>
       </div>
     </header>
