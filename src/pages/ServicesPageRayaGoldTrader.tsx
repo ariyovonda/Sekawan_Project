@@ -3,49 +3,112 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Shield, BarChart, TrendingUp, ArrowRight } from "lucide-react";
+import { ShoppingBag, ArrowLeft, CreditCard } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
+import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ServicesPageRayaGoldTrader = () => {
+  const goldChains = [
+    {
+      id: 1,
+      name: "Kalung Emas Rantai Minimalis Berat 9.5gr",
+      price: "Rp 1.823.000",
+      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 2,
+      name: "Kalung Emas Rantai Minimalis Berat 9.5gr",
+      price: "Rp 1.823.000",
+      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 3,
+      name: "Kalung Emas Rantai Minimalis Berat 9.5gr",
+      price: "Rp 1.823.000",
+      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      id: 4,
+      name: "Kalung Emas Rantai Minimalis Berat 9.5gr",
+      price: "Rp 1.823.000",
+      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+    },
+  ];
+
+  const GoldProductCard = ({ item }: { item: typeof goldChains[0] }) => (
+    <div className="bg-luxury-50 rounded-lg overflow-hidden">
+      <div className="h-48 w-full overflow-hidden">
+        <img 
+          src={item.image} 
+          alt={item.name} 
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80";
+          }}
+        />
+      </div>
+      <div className="p-3">
+        <h3 className="text-sm text-white mb-2 line-clamp-2 h-10">{item.name}</h3>
+        <div className="flex justify-between items-center">
+          <Button size="sm" className="bg-gold hover:bg-gold-dark text-luxury-200 text-xs px-3 py-1">
+            Buy Now
+          </Button>
+          <span className="text-gold font-semibold">{item.price}</span>
+        </div>
+        <div className="flex items-center justify-center mt-3">
+          <ShoppingBag className="w-4 h-4 mr-1 text-luxury-700" />
+          <span className="text-xs text-luxury-700">Shopee</span>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-luxury">
       <Navbar />
       <main>
-        {/* Hero Section */}
-        <section className="bg-gradient-to-b from-luxury to-luxury-50 pt-32 pb-16">
+        <section className="pt-32 pb-16">
           <div className="content-section">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+            <Link to="/" className="flex items-center text-gold mb-6 group">
+              <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+              <span className="text-sm">Kembali ke Layanan</span>
+            </Link>
+
+            <div className="flex flex-col md:flex-row gap-10">
               <div className="w-full md:w-1/2">
                 <AnimatedSection>
-                  <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
-                    Raya Gold Trader
+                  <div className="flex items-center mb-4">
+                    <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center mr-3">
+                      <CreditCard className="w-4 h-4 text-luxury-200" />
+                    </div>
+                    <h1 className="text-gold text-3xl font-bold">Raya Gold Trader</h1>
                   </div>
-                  <h1 className="mb-6">
-                    Investasi Emas <span className="text-shine">Yang Aman dan Transparan</span>
-                  </h1>
-                  <p className="text-luxury-700 mb-8 text-lg">
-                    Raya Gold Trader menawarkan investasi emas dengan harga transparan, penyimpanan aman, dan 
-                    likuiditas tinggi untuk masa depan finansial yang lebih cerah.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <Button className="bg-gold hover:bg-gold-dark text-luxury-200 button-shine">
-                      Mulai Berinvestasi
-                    </Button>
-                    <Button variant="outline" className="border-gold text-gold hover:bg-gold/10">
-                      Konsultasi Gratis
-                    </Button>
+                  
+                  <div className="text-luxury-700 space-y-4">
+                    <p>
+                      Raya Gold Trader serves the buying and selling of precious jewelry or bullion. The latest innovation raises the development of precious metal trading for anyone who wants to trade gold.
+                    </p>
+                    <p>
+                      Offering high purchase prices is our advantage. Please consult our partners to get more complete purchasing and selling information.
+                    </p>
+                    <p className="font-semibold text-gold">
+                      Raya Gold provides easy access for anyone who wants to trade gold, throughout Indonesia.
+                    </p>
                   </div>
                 </AnimatedSection>
               </div>
+              
               <div className="w-full md:w-1/2">
                 <AnimatedSection delay={100}>
-                  <div className="glass-card p-6 rounded-xl shadow-gold/20 shadow-lg">
+                  <div className="glass-card p-6 rounded-xl shadow-gold/20 shadow-lg flex items-center justify-center h-[300px]">
                     <img 
-                      src="/gold-investment.jpg" 
+                      src="/lovable-uploads/a3e03f07-e7a7-436e-92ab-1d98a4832a05.png" 
                       alt="Raya Gold Trader" 
-                      className="w-full h-auto rounded-lg"
+                      className="max-w-40 max-h-40"
                       onError={(e) => {
-                        e.currentTarget.src = "https://images.unsplash.com/photo-1610375461369-d613b613daab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80";
+                        e.currentTarget.src = "https://via.placeholder.com/150/D4AF37/000000?text=GOLD";
                       }}
                     />
                   </div>
@@ -55,127 +118,92 @@ const ServicesPageRayaGoldTrader = () => {
           </div>
         </section>
 
-        {/* Benefits Section */}
-        <section className="py-16 bg-luxury-50">
+        <section className="py-16">
           <div className="content-section">
             <AnimatedSection>
-              <div className="text-center mb-14">
-                <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
-                  Keunggulan Kami
-                </div>
-                <h2 className="mb-4">Mengapa Memilih <span className="text-shine">Raya Gold Trader</span></h2>
-                <p className="max-w-2xl mx-auto text-luxury-700">
-                  Investasi emas batangan dengan Raya Gold Trader menawarkan berbagai keuntungan yang membuat masa depan finansial Anda lebih aman.
-                </p>
+              <div className="text-center mb-10">
+                <h2 className="text-3xl font-bold">
+                  <span className="text-white">Services </span>
+                  <span className="text-gold">We Provide</span>
+                </h2>
               </div>
             </AnimatedSection>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <AnimatedSection delay={100}>
-                <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
-                  <div className="mb-5 icon-box">
-                    <Shield className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-white">Emas Bersertifikat Resmi</h3>
-                  <p className="text-luxury-700">
-                    Semua emas yang kami sediakan memiliki sertifikat keaslian dari lembaga terpercaya dengan kadar kemurnian 99.99%.
-                  </p>
+            
+            <Tabs defaultValue="shopee" className="w-full">
+              <TabsList className="w-full flex justify-start mb-6 bg-transparent border-b border-luxury-200">
+                <TabsTrigger 
+                  value="shopee" 
+                  className={cn(
+                    "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
+                    "rounded-none bg-transparent text-luxury-700 pb-2"
+                  )}
+                >
+                  Shopee
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="blibli" 
+                  className={cn(
+                    "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
+                    "rounded-none bg-transparent text-luxury-700 pb-2"
+                  )}
+                >
+                  Blibli
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="lazada" 
+                  className={cn(
+                    "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
+                    "rounded-none bg-transparent text-luxury-700 pb-2"
+                  )}
+                >
+                  Lazada
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="shopee" className="mt-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {goldChains.map((item) => (
+                    <GoldProductCard key={item.id} item={item} />
+                  ))}
                 </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={200}>
-                <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
-                  <div className="mb-5 icon-box">
-                    <TrendingUp className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-white">Harga Transparan</h3>
-                  <p className="text-luxury-700">
-                    Kami menawarkan harga yang kompetitif dan transparan sesuai dengan pergerakan pasar global tanpa biaya tersembunyi.
-                  </p>
+              </TabsContent>
+              
+              <TabsContent value="blibli" className="mt-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {goldChains.map((item) => (
+                    <GoldProductCard key={item.id} item={{...item, name: "Gelang Emas Rantai Minimalis " + item.id}} />
+                  ))}
                 </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={300}>
-                <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
-                  <div className="mb-5 icon-box">
-                    <BarChart className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-white">Likuiditas Tinggi</h3>
-                  <p className="text-luxury-700">
-                    Jual kembali emas Anda kapan saja dengan proses yang mudah dan cepat tanpa pemotongan nilai yang signifikan.
-                  </p>
+              </TabsContent>
+              
+              <TabsContent value="lazada" className="mt-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {goldChains.map((item) => (
+                    <GoldProductCard key={item.id} item={{...item, name: "Cincin Emas Rantai Minimalis " + item.id}} />
+                  ))}
                 </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={400}>
-                <div className="glass-card-dark p-6 hover:shadow-lg transition-all h-full flex flex-col">
-                  <div className="mb-5 icon-box">
-                    <CreditCard className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-white">Penyimpanan Aman</h3>
-                  <p className="text-luxury-700">
-                    Nikmati layanan penyimpanan emas dengan sistem keamanan berstandar internasional dan asuransi penuh.
-                  </p>
-                </div>
-              </AnimatedSection>
-            </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </section>
 
-        {/* How It Works Section */}
-        <section className="py-16 bg-luxury">
-          <div className="content-section">
+        <section className="py-16">
+          <div className="content-section max-w-4xl">
             <AnimatedSection>
-              <div className="text-center mb-14">
-                <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
-                  Proses Investasi
-                </div>
-                <h2 className="mb-4 text-white">Cara <span className="text-shine">Berinvestasi Emas</span> Dengan Kami</h2>
-                <p className="max-w-2xl mx-auto text-luxury-700">
-                  Proses berinvestasi emas dengan Raya Gold Trader sangat mudah dan dapat dilakukan dalam beberapa langkah sederhana.
+              <div className="glass-card-dark p-10 text-center">
+                <h2 className="text-2xl font-bold mb-4">
+                  <span className="text-white">Interested In </span>
+                  <span className="text-gold">Raya Gold Trader?</span>
+                </h2>
+                <p className="text-luxury-700 mb-6 max-w-lg mx-auto">
+                  Do not hesitate to contact and consult your financial needs.
+                  Our team is ready to help you get the best solution.
                 </p>
+                <Button className="bg-gold hover:bg-gold-dark text-luxury-200">
+                  Contact Us
+                </Button>
               </div>
             </AnimatedSection>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <AnimatedSection delay={100}>
-                <div className="glass-card-dark p-6 border-gold/20 hover:border-gold/40 transition-all h-full relative">
-                  <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-gold text-luxury-200 flex items-center justify-center text-xl font-bold">1</div>
-                  <h3 className="text-xl font-semibold mb-3 text-white mt-4">Pilih Produk Emas</h3>
-                  <p className="text-luxury-700">
-                    Pilih jenis dan berat emas batangan yang ingin Anda investasikan sesuai dengan budget dan tujuan investasi Anda.
-                  </p>
-                </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={200}>
-                <div className="glass-card-dark p-6 border-gold/20 hover:border-gold/40 transition-all h-full relative">
-                  <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-gold text-luxury-200 flex items-center justify-center text-xl font-bold">2</div>
-                  <h3 className="text-xl font-semibold mb-3 text-white mt-4">Lakukan Pembayaran</h3>
-                  <p className="text-luxury-700">
-                    Selesaikan pembayaran melalui berbagai metode yang tersedia dengan sistem keamanan transaksi yang terjamin.
-                  </p>
-                </div>
-              </AnimatedSection>
-
-              <AnimatedSection delay={300}>
-                <div className="glass-card-dark p-6 border-gold/20 hover:border-gold/40 transition-all h-full relative">
-                  <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-gold text-luxury-200 flex items-center justify-center text-xl font-bold">3</div>
-                  <h3 className="text-xl font-semibold mb-3 text-white mt-4">Kelola Investasi Anda</h3>
-                  <p className="text-luxury-700">
-                    Pantau perkembangan investasi emas Anda secara real-time melalui aplikasi atau website kami yang user-friendly.
-                  </p>
-                </div>
-              </AnimatedSection>
-            </div>
-
-            <div className="flex justify-center mt-10">
-              <AnimatedSection delay={400}>
-                <Button className="bg-gold hover:bg-gold-dark text-luxury-200 button-shine">
-                  Mulai Investasi Sekarang
-                </Button>
-              </AnimatedSection>
-            </div>
           </div>
         </section>
       </main>
