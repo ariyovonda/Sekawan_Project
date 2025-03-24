@@ -2,28 +2,33 @@
 import { ArrowRight, CreditCard, Coins, Smartphone, ShoppingBag } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const services = [
     {
       icon: <Coins className="w-8 h-8" />,
       title: "Sekawan Modal",
-      description: "Solusi pembiayaan usaha dengan bunga rendah dan proses persetujuan yang mudah untuk pengembangan bisnis Anda."
+      description: "Solusi pembiayaan usaha dengan bunga rendah dan proses persetujuan yang mudah untuk pengembangan bisnis Anda.",
+      link: "#"
     },
     {
       icon: <CreditCard className="w-8 h-8" />,
       title: "Raya Gold Trader",
-      description: "Investasi emas batangan dengan harga transparan dan penyimpanan yang aman untuk masa depan yang lebih cerah."
+      description: "Investasi emas batangan dengan harga transparan dan penyimpanan yang aman untuk masa depan yang lebih cerah.",
+      link: "/services/raya-gold-trader"
     },
     {
       icon: <ShoppingBag className="w-8 h-8" />,
       title: "Paylater Movement",
-      description: "Nikmati kemudahan berbelanja dengan cicilan ringan dan proses pengajuan yang cepat tanpa kartu kredit."
+      description: "Nikmati kemudahan berbelanja dengan cicilan ringan dan proses pengajuan yang cepat tanpa kartu kredit.",
+      link: "#"
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
       title: "Raya Gadget",
-      description: "Dapatkan gadget impian dengan cicilan terjangkau dan persyaratan mudah untuk mengikuti perkembangan teknologi."
+      description: "Dapatkan gadget impian dengan cicilan terjangkau dan persyaratan mudah untuk mengikuti perkembangan teknologi.",
+      link: "#"
     }
   ];
 
@@ -52,10 +57,10 @@ const Services = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-white">{service.title}</h3>
                 <p className="text-luxury-700 mb-4 flex-grow">{service.description}</p>
-                <a href="#" className="group inline-flex items-center text-gold font-medium">
+                <Link to={service.link} className="group inline-flex items-center text-gold font-medium">
                   <span className="animated-border">Pelajari Lebih Lanjut</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
+                </Link>
               </div>
             </AnimatedSection>
           ))}
