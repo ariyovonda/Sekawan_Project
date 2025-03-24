@@ -29,13 +29,13 @@ const Navbar = () => {
       <div className="container flex items-center justify-between">
         <div className="flex items-center">
           <a href="/" className="text-2xl font-bold text-white">
-            <span className="text-gold">Dana</span>Sejahtera
+            <span className="text-gold">SEKA</span>WAN
           </a>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          {["Beranda", "Layanan", "Tentang", "Cabang", "Karier"].map((item) => (
+          {["Beranda", "Layanan", "Tentang", ].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -45,7 +45,7 @@ const Navbar = () => {
             </a>
           ))}
           <Button className="bg-gold hover:bg-gold-dark text-luxury-200 button-shine">
-            Hubungi Kami
+            Contact Us
           </Button>
         </nav>
 

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -71,16 +70,15 @@ const Testimonials = () => {
             <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
               Testimonial
             </div>
-            <h2 className="mb-4 text-white">Apa yang <span className="text-shine">Nasabah Katakan</span></h2>
+            <h2 className="mb-4 text-white">What <span className="text-shine">Customer Say</span></h2>
             <p className="max-w-2xl mx-auto text-luxury-700">
-              Kesuksesan kami diukur dari kepuasan nasabah. Lihat bagaimana layanan kami 
-              telah membantu banyak orang mencapai tujuan finansial mereka.
+            Our success is measured by customer satisfaction. See how our services have been helping many people achieve their financial goals.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="relative overflow-hidden">
-          <div className="relative max-w-4xl mx-auto px-4">
+        <div className="relative overflow-hidden px-16">
+          <div className="relative max-w-3xl mx-auto">
             <div 
               className={cn(
                 "transition-all duration-500 ease-in-out",
@@ -112,23 +110,23 @@ const Testimonials = () => {
                 />
               ))}
             </div>
+          </div>
 
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none">
-              <button
-                onClick={prevTestimonial}
-                className="w-10 h-10 rounded-full bg-luxury-100 border border-luxury-200 text-gold hover:bg-luxury-200 flex items-center justify-center transition-colors pointer-events-auto"
-                aria-label="Testimonial sebelumnya"
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={nextTestimonial}
-                className="w-10 h-10 rounded-full bg-luxury-100 border border-luxury-200 text-gold hover:bg-luxury-200 flex items-center justify-center transition-colors pointer-events-auto"
-                aria-label="Testimonial berikutnya"
-              >
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
+          <div className="absolute top-1/2 -translate-y-1/2 w-full left-0 flex justify-between">
+            <button
+              onClick={prevTestimonial}
+              className="w-10 h-10 rounded-full bg-luxury-100 border border-luxury-200 text-gold hover:bg-luxury-200 flex items-center justify-center transition-colors ml-2"
+              aria-label="Testimonial sebelumnya"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextTestimonial}
+              className="w-10 h-10 rounded-full bg-luxury-100 border border-luxury-200 text-gold hover:bg-luxury-200 flex items-center justify-center transition-colors mr-2"
+              aria-label="Testimonial berikutnya"
+            >
+              <ArrowRight className="w-5 h-5" />
+            </button>
           </div>
         </div>
       </div>

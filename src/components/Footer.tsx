@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Twitter, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight, MessageCircle } from "lucide-react";
+
+import { Facebook, Instagram, Twitter, Linkedin, Youtube, MapPin, Phone, Mail, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Footer = () => {
@@ -19,7 +20,9 @@ const Footer = () => {
   ];
   
   const socialLinks = [
-    { icon: <MessageCircle className="w-5 h-5" />, name: "WhatsApp" },
+    { icon: <Facebook className="w-5 h-5" />, name: "Facebook" },
+    { icon: <Instagram className="w-5 h-5" />, name: "Instagram" },
+    { icon: <Twitter className="w-5 h-5" />, name: "Twitter" },
   ];
 
   return (
@@ -29,12 +32,11 @@ const Footer = () => {
           <div>
             <div className="mb-5">
               <a href="/" className="text-3xl font-bold">
-                <span className="text-gold">Dana</span>Sejahtera
+                <span className="text-gold">Seka</span>wan
               </a>
             </div>
             <p className="text-luxury-600 mb-6">
-              Mitra terpercaya untuk solusi keuangan yang aman dan terjangkau 
-              bagi seluruh masyarakat Indonesia.
+            Trusted partner for solutions Safe and affordable finance for Indonesian traders.
             </p>
             
             <div className="flex space-x-4">
@@ -85,18 +87,18 @@ const Footer = () => {
               <li className="flex">
                 <MapPin className="w-5 h-5 text-gold mt-1 mr-3 shrink-0" />
                 <span className="text-luxury-600">
-                  Gedung DanaSejahtera<br />
-                  Jl. Jendral Sudirman Kav. 52-53<br />
-                  Jakarta Selatan, 12190
+                  ---<br />
+                  ---<br />
+                  ---
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-gold mr-3 shrink-0" />
-                <span className="text-luxury-600">0800-1234-5678</span>
+                <span className="text-luxury-600">---</span>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-gold mr-3 shrink-0" />
-                <span className="text-luxury-600">info@danasejahtera.id</span>
+                <span className="text-luxury-600">---</span>
               </li>
             </ul>
           </div>
@@ -105,27 +107,20 @@ const Footer = () => {
         <div className="border-t border-luxury-100 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-luxury-600 text-sm mb-4 md:mb-0">
-              &copy; {currentYear} PT Dana Sejahtera Indonesia. Hak Cipta Dilindungi.
+              &copy; {currentYear} Sekawan Grup. Copyright Reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a href="#" className="text-luxury-600 text-sm hover:text-gold transition-colors">
-                Kebijakan Privasi
+                Privacy Policy
               </a>
               <a href="#" className="text-luxury-600 text-sm hover:text-gold transition-colors">
-                Syarat & Ketentuan
-              </a>
-              <a href="#" className="text-luxury-600 text-sm hover:text-gold transition-colors">
-                Peta Situs
+                Terms & Conditions
               </a>
             </div>
           </div>
         </div>
         
-        <div className="text-center mt-8">
-          <p className="text-luxury-600 text-xs">
-            DanaSejahtera terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK)
-          </p>
-        </div>
+        
       </div>
     </footer>
   );

@@ -7,27 +7,27 @@ import { Link } from "react-router-dom";
 const Services = () => {
   const services = [
     {
-      icon: <Coins className="w-8 h-8" />,
+      icon: <CreditCard className="w-8 h-8" />,
       title: "Sekawan Modal",
-      description: "Solusi pembiayaan usaha dengan bunga rendah dan proses persetujuan yang mudah untuk pengembangan bisnis Anda.",
+      description: "We provide venture capital loans to help you start and grow your business, with easy terms and affordable interest.",
       link: "#"
     },
     {
-      icon: <CreditCard className="w-8 h-8" />,
+      icon: <Coins className="w-8 h-8" />,
       title: "Raya Gold Trader",
-      description: "Investasi emas batangan dengan harga transparan dan penyimpanan yang aman untuk masa depan yang lebih cerah.",
+      description: "provides the opportunity to raise additional capital to support your trading activities, with a fast and flexible process.",
       link: "/services/raya-gold-trader"
     },
     {
       icon: <ShoppingBag className="w-8 h-8" />,
       title: "Paylater Movement",
-      description: "Nikmati kemudahan berbelanja dengan cicilan ringan dan proses pengajuan yang cepat tanpa kartu kredit.",
+      description: "with Paylater loans, which allows you to make payments later according to your convenience.",
       link: "#"
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
       title: "Raya Gadget",
-      description: "Dapatkan gadget impian dengan cicilan terjangkau dan persyaratan mudah untuk mengikuti perkembangan teknologi.",
+      description: "provides a safe and easy buying and selling for those of you who want to replace or buy electronic devices at competitive prices..",
       link: "#"
     }
   ];
@@ -37,13 +37,12 @@ const Services = () => {
       <div className="content-section">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
-              Layanan Kami
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-luxury-100 text-gold font-medium text-sm">
+              Our Services
             </div>
-            <h2 className="mb-4 text-white">Solusi Finansial <span className="text-shine">Untuk Semua Kebutuhan</span></h2>
+            <h2 className="mb-4 text-white">Financial  <span className="text-shine">Solution For All Needs</span></h2>
             <p className="max-w-2xl mx-auto text-luxury-700">
-              Kami menyediakan berbagai layanan keuangan terpercaya untuk membantu Anda
-              memenuhi kebutuhan finansial dengan mudah dan aman.
+              We provide a wide range of reliable financial services to help you meet your needs financial needs easily and securely.
             </p>
           </div>
         </AnimatedSection>
@@ -58,7 +57,7 @@ const Services = () => {
                 <h3 className="text-xl font-semibold mb-3 text-white">{service.title}</h3>
                 <p className="text-luxury-700 mb-4 flex-grow">{service.description}</p>
                 <Link to={service.link} className="group inline-flex items-center text-gold font-medium">
-                  <span className="animated-border">Pelajari Lebih Lanjut</span>
+                  <span className="animated-border">Learn More</span>
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
