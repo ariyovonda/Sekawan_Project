@@ -14,58 +14,72 @@ const ServicesPageRayaGoldTrader = () => {
   const shopeeProducts = [
     {
       id: 1,
-      name: "Kalung Emas Rantai Minimalis Berat 9.5gr",
-      price: "Rp 1.823.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "Kalung Emas Rantai Minimalis Berat Ringan & Terlihat Besar - Kalung Perhiasan Emas Minimalis Polos - Toko Emas Gadjah",
+      price: "Rp 816.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98t-lmczo35h1b4cba@resize_w900_nl.webp",
       marketplace: "Shopee"
     },
     {
       id: 2,
-      name: "Kalung Emas Rantai Kecil Berat 7.8gr",
-      price: "Rp 1.495.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "Gelang Emas New Fancy - RINGAN TAPI BESAR!! - Toko Emas Gadjah",
+      price: "Rp 512.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98s-ltb0t03o59097a@resize_w900_nl.webp",
       marketplace: "Shopee"
     },
     {
       id: 3,
-      name: "Kalung Emas Korea Model Y Berat 8.2gr",
-      price: "Rp 1.572.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "Gelang Emas Korea Imut - Gelang Emas Rantai Besar, Sangat Ringan, & Kuat - Toko Emas Gadjah",
+      price: "Rp 396.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98t-lv4ocjtkj6mlba@resize_w900_nl.webp",
       marketplace: "Shopee"
     },
     {
       id: 4,
-      name: "Kalung Emas Liontin Bunga Berat 10.3gr",
-      price: "Rp 1.977.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "elang Emas Vigaro Oval SANGAT BESAR & SANGAT RINGAN - New Gold Bracelet Series - Toko Emas Gadjah",
+      price: "Rp 863.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7rasa-m5frncyrt5au1c.webp",
       marketplace: "Shopee"
     },
     {
       id: 5,
-      name: "Kalung Emas Mata Berlian Kecil Berat 8.7gr",
-      price: "Rp 1.923.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "Gelang Emas Jedar 1 Layer- Toko Emas Gadjah",
+      price: "Rp 430.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98u-ltb0t03nzmqhd6@resize_w900_nl.webp",
       marketplace: "Shopee"
     },
     {
-      id: 6,
-      name: "Kalung Emas Bangkok Premium Berat 11.2gr",
-      price: "Rp 2.149.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      id: 1,
+      name: "Kalung Emas Rantai Minimalis Berat Ringan & Terlihat Besar - Kalung Perhiasan Emas Minimalis Polos - Toko Emas Gadjah",
+      price: "Rp 816.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98t-lmczo35h1b4cba@resize_w900_nl.webp",
       marketplace: "Shopee"
     },
     {
-      id: 7,
-      name: "Kalung Emas Liontin Love Berat 9.8gr",
-      price: "Rp 1.881.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      id: 2,
+      name: "Gelang Emas New Fancy - RINGAN TAPI BESAR!! - Toko Emas Gadjah",
+      price: "Rp 512.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98s-ltb0t03o59097a@resize_w900_nl.webp",
       marketplace: "Shopee"
     },
     {
-      id: 8,
-      name: "Kalung Emas Rantai Panjang Berat 12.3gr",
-      price: "Rp 2.361.000",
-      image: "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      id: 3,
+      name: "Gelang Emas Korea Imut - Gelang Emas Rantai Besar, Sangat Ringan, & Kuat - Toko Emas Gadjah",
+      price: "Rp 396.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98t-lv4ocjtkj6mlba@resize_w900_nl.webp",
+      marketplace: "Shopee"
+    },
+    {
+      id: 4,
+      name: "elang Emas Vigaro Oval SANGAT BESAR & SANGAT RINGAN - New Gold Bracelet Series - Toko Emas Gadjah",
+      price: "Rp 863.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7rasa-m5frncyrt5au1c.webp",
+      marketplace: "Shopee"
+    },
+    {
+      id: 5,
+      name: "Gelang Emas Jedar 1 Layer- Toko Emas Gadjah",
+      price: "Rp 430.000",
+      image: "https://down-id.img.susercontent.com/file/id-11134207-7r98u-ltb0t03nzmqhd6@resize_w900_nl.webp",
       marketplace: "Shopee"
     },
   ];
@@ -74,51 +88,72 @@ const ServicesPageRayaGoldTrader = () => {
   const blibliProducts = [
     {
       id: 1,
-      name: "Gelang Emas Rantai Minimalis Berat 5.2gr",
-      price: "Rp 997.000",
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "GL New Fancy",
+      price: "Rp 535.000",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//103/MTA-91643827/gadjah_gl-new-fancy_full01.jpg",
       marketplace: "Blibli"
     },
     {
       id: 2,
-      name: "Gelang Emas Model Tennis Berat 6.3gr",
-      price: "Rp 1.209.000",
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "Rantai Emas Jedar 1 Layer- Toko Emas Gadjah",
+      price: "cooming soon",
+      image: "hhttps://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//93/MTA-91644140/gadjah_rantai-emas-jedar-1-layer-toko-emas-gadjah_full01.jpg",
       marketplace: "Blibli"
     },
     {
       id: 3,
-      name: "Gelang Emas Ukir Nama Berat 5.8gr",
-      price: "Rp 1.113.000",
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "Rt Hollow Fancy 8k",
+      price: "Rp 750.000",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//92/MTA-91644310/gadjah_rt-hollow-fancy-8k_full01.jpg",
       marketplace: "Blibli"
     },
     {
       id: 4,
-      name: "Gelang Emas Charm Butterfly Berat 7.1gr",
-      price: "Rp 1.362.000",
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      name: "Rantai Emas Siem - Toko Emas Gadjah",
+      price: "Rp 850.000",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//99/MTA-91644047/gadjah_rantai-emas-siem-toko-emas-gadjah_full01.jpg",
       marketplace: "Blibli"
     },
     {
       id: 5,
-      name: "Gelang Emas Couple Berat 8.5gr",
+      name: "Rt Alta",
       price: "Rp 1.631.000",
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//103/MTA-91643827/gadjah_gl-new-fancy_full01.jpg",
       marketplace: "Blibli"
     },
     {
-      id: 6,
-      name: "Gelang Emas Berlian Kecil Berat 7.9gr",
-      price: "Rp 1.935.000",
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      id: 1,
+      name: "GL New Fancy",
+      price: "Rp 535.000",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//103/MTA-91643827/gadjah_gl-new-fancy_full01.jpg",
       marketplace: "Blibli"
     },
     {
-      id: 7,
-      name: "Gelang Emas Anak Motif Kartun Berat 4.5gr",
-      price: "Rp 863.000",
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+      id: 2,
+      name: "Rantai Emas Jedar 1 Layer- Toko Emas Gadjah",
+      price: "cooming soon",
+      image: "hhttps://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//93/MTA-91644140/gadjah_rantai-emas-jedar-1-layer-toko-emas-gadjah_full01.jpg",
+      marketplace: "Blibli"
+    },
+    {
+      id: 3,
+      name: "Rt Hollow Fancy 8k",
+      price: "Rp 750.000",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//92/MTA-91644310/gadjah_rt-hollow-fancy-8k_full01.jpg",
+      marketplace: "Blibli"
+    },
+    {
+      id: 4,
+      name: "Rantai Emas Siem - Toko Emas Gadjah",
+      price: "Rp 850.000",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//99/MTA-91644047/gadjah_rantai-emas-siem-toko-emas-gadjah_full01.jpg",
+      marketplace: "Blibli"
+    },
+    {
+      id: 5,
+      name: "Rt Alta",
+      price: "Rp 1.631.000",
+      image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//103/MTA-91643827/gadjah_gl-new-fancy_full01.jpg",
       marketplace: "Blibli"
     },
   ];
@@ -333,13 +368,13 @@ const ServicesPageRayaGoldTrader = () => {
           <div className="content-section">
             <Link to="/" className="flex items-center text-gold mb-6 group">
               <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-sm">Kembali ke Layanan</span>
+              <span className="text-sm">Back to Home</span>
             </Link>
 
             <div className="flex flex-col md:flex-row gap-10">
               <div className="w-full md:w-1/2">
                 <AnimatedSection>
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-8">
                   <div className="w-8 h-8 rounded-ful flex items-center justify-center mr-3">
                     <img 
                       src="https://res.cloudinary.com/dqrazyfpm/image/upload/v1742739708/Frame_17_rdshxw.png" 
@@ -355,11 +390,9 @@ const ServicesPageRayaGoldTrader = () => {
                   <div className="text-luxury-700 space-y-4">
                     <p>
                       Raya Gold Trader serves the buying and selling of precious jewelry or bullion. The latest innovation raises the development of precious metal trading for anyone who wants to trade gold.
-                    </p>
-                    <p>
                       Offering high purchase prices is our advantage. Please consult our partners to get more complete purchasing and selling information.
                     </p>
-                    <p className="font-semibold text-gold">
+                    <p>
                       Raya Gold provides easy access for anyone who wants to trade gold, throughout Indonesia.
                     </p>
                   </div>
@@ -444,7 +477,9 @@ const ServicesPageRayaGoldTrader = () => {
         <section className="py-16">
           <div className="content-section max-w-4xl">
             <AnimatedSection>
-              <div className="glass-card-dark p-10 text-center">
+              <div className="glass-card-dark p-10 text-center overflow-hidden">
+              <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
+              <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
                 <h2 className="text-2xl font-bold mb-4">
                   <span className="text-white">Interested In </span>
                   <span className="text-gold">Raya Gold Trader?</span>
