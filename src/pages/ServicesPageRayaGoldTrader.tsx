@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { shopeeProducts, blibliProducts, lazadaProducts } from "@/components/Product";
+import VisitorCounter from "@/components/VisitorCounter";
 
 const ServicesPageRayaGoldTrader = () => {
   // Card Produk
@@ -175,6 +176,7 @@ const GoldProductCard = ({ item }) => (
   return (
     <div className="min-h-screen overflow-x-hidden bg-luxury">
       <Navbar />
+      <VisitorCounter />
       <main>
         <section className="pt-20 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16">
           <div className="content-section px-4 md:px-6 lg:px-8 max-w-7xl mx-auto">
