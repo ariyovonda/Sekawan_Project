@@ -11,9 +11,11 @@ import { shopeeProducts, blibliProducts, lazadaProducts } from "@/components/Pro
 
 const ServicesPageRayaGoldTrader = () => {
   // Card Produk
-  const GoldProductCard = ({ item }) => (
-    <div className="bg-luxury-50 rounded-lg overflow-hidden min-w-[240px] w-[240px] mx-2 flex-shrink-0 hover:shadow-lg hover:shadow-gold/10 transition-all duration-300 hover:translate-y-[-5px]">
-      <div className="h-48 w-full overflow-hidden">
+  // Card Produk
+const GoldProductCard = ({ item }) => (
+  <div className="bg-luxury-50 rounded-lg overflow-hidden min-w-[240px] w-[240px] mx-2 flex-shrink-0 hover:shadow-lg hover:shadow-gold/10 transition-all duration-300 hover:translate-y-[-5px]">
+    <div className="h-48 w-full overflow-hidden">
+      {item.link ? (
         <a href={item.link} target="_blank" rel="noopener noreferrer">
           <img
             src={item.image}
@@ -24,26 +26,46 @@ const ServicesPageRayaGoldTrader = () => {
             }}
           />
         </a>
-      </div>
-      <div className="p-3">
+      ) : (
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80";
+          }}
+        />
+      )}
+    </div>
+    <div className="p-3">
+      {item.link ? (
         <a href={item.link} target="_blank" rel="noopener noreferrer" className="no-underline">
           <h3 className="text-sm text-white mb-2 line-clamp-2 h-10 hover:text-gold transition-colors">{item.name}</h3>
         </a>
-        <div className="flex justify-between items-center">
+      ) : (
+        <h3 className="text-sm text-white mb-2 line-clamp-2 h-10">{item.name}</h3>
+      )}
+      <div className="flex justify-between items-center">
+        {item.link ? (
           <a href={item.link} target="_blank" rel="noopener noreferrer" className="no-underline">
             <Button size="sm" className="bg-gold hover:bg-gold-dark text-luxury-200 text-xs px-3 py-1">
               Buy Now
             </Button>
           </a>
-          <span className="text-gold font-semibold">{item.price}</span>
-        </div>
-        <div className="flex items-center justify-center mt-3">
-          <ShoppingBag className="w-4 h-4 mr-1 text-luxury-700" />
-          <span className="text-xs text-luxury-700">{item.marketplace}</span>
-        </div>
+        ) : (
+          <Button size="sm" className="bg-gray-500 hover:bg-gray-600 text-luxury-200 text-xs px-3 py-1" disabled>
+            Coming Soon
+          </Button>
+        )}
+        <span className="text-gold font-semibold">{item.price}</span>
+      </div>
+      <div className="flex items-center justify-center mt-3">
+        <ShoppingBag className="w-4 h-4 mr-1 text-luxury-700" />
+        <span className="text-xs text-luxury-700">{item.marketplace}</span>
       </div>
     </div>
-  );
+  </div>
+);
 
   // Component untuk carousel/slider produk
   const ProductCarousel = ({ products }) => {

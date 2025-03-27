@@ -46,7 +46,7 @@ export const shopeeProducts = [
       price: "Rp 816.000",
       image: "https://down-id.img.susercontent.com/file/id-11134207-7r98t-lmczo35h1b4cba@resize_w900_nl.webp",
       marketplace: "Shopee",
-      link: "https://shopee.co.id/Kalung-Emas-Rantai-Minimalis-Berat-Ringan-Terlihat-Besar-i.123456789.67890123"
+      link: ""
     },
     {
       id: 7,
@@ -54,7 +54,7 @@ export const shopeeProducts = [
       price: "Rp 512.000",
       image: "https://down-id.img.susercontent.com/file/id-11134207-7r98s-ltb0t03o59097a@resize_w900_nl.webp",
       marketplace: "Shopee",
-      link: "https://shopee.co.id/Gelang-Emas-New-Fancy-RINGAN-TAPI-BESAR-i.123456789.78901234"
+      link: ""
     },
     {
       id: 8,
@@ -62,7 +62,7 @@ export const shopeeProducts = [
       price: "Rp 396.000",
       image: "https://down-id.img.susercontent.com/file/id-11134207-7r98t-lv4ocjtkj6mlba@resize_w900_nl.webp",
       marketplace: "Shopee",
-      link: "https://shopee.co.id/Gelang-Emas-Korea-Imut-Gelang-Emas-Rantai-Besar-i.123456789.89012345"
+      link: ""
     },
     {
       id: 9,
@@ -70,7 +70,7 @@ export const shopeeProducts = [
       price: "Rp 863.000",
       image: "https://down-id.img.susercontent.com/file/id-11134207-7rasa-m5frncyrt5au1c.webp",
       marketplace: "Shopee",
-      link: "https://shopee.co.id/Gelang-Emas-Vigaro-Oval-SANGAT-BESAR-i.123456789.90123456"
+      link: ""
     },
     {
       id: 10,
@@ -78,7 +78,7 @@ export const shopeeProducts = [
       price: "Rp 430.000",
       image: "https://down-id.img.susercontent.com/file/id-11134207-7r98u-ltb0t03nzmqhd6@resize_w900_nl.webp",
       marketplace: "Shopee",
-      link: "https://shopee.co.id/Gelang-Emas-Jedar-1-Layer-i.123456789.01234567"
+      link: ""
     }
   ];
   
@@ -130,7 +130,7 @@ export const shopeeProducts = [
       price: "Rp 535.000",
       image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//103/MTA-91643827/gadjah_gl-new-fancy_full01.jpg",
       marketplace: "Blibli",
-      link: "https://www.blibli.com/p/gl-new-fancy-special/ps--GAD-70027-00006"
+      link: ""
     },
     {
       id: 7,
@@ -138,7 +138,7 @@ export const shopeeProducts = [
       price: "cooming soon",
       image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//93/MTA-91644140/gadjah_rantai-emas-jedar-1-layer-toko-emas-gadjah_full01.jpg",
       marketplace: "Blibli",
-      link: "https://www.blibli.com/p/rantai-emas-jedar-1-layer-premium/ps--GAD-70027-00007"
+      link: ""
     },
     {
       id: 8,
@@ -146,7 +146,7 @@ export const shopeeProducts = [
       price: "Rp 750.000",
       image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//92/MTA-91644310/gadjah_rt-hollow-fancy-8k_full01.jpg",
       marketplace: "Blibli",
-      link: "https://www.blibli.com/p/rt-hollow-fancy-8k-premium/ps--GAD-70027-00008"
+      link: ""
     },
     {
       id: 9,
@@ -154,7 +154,7 @@ export const shopeeProducts = [
       price: "Rp 850.000",
       image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//99/MTA-91644047/gadjah_rantai-emas-siem-toko-emas-gadjah_full01.jpg",
       marketplace: "Blibli",
-      link: "https://www.blibli.com/p/rantai-emas-siem-premium/ps--GAD-70027-00009"
+      link: ""
     },
     {
       id: 10,
@@ -162,7 +162,7 @@ export const shopeeProducts = [
       price: "Rp 1.631.000",
       image: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//103/MTA-91643827/gadjah_gl-new-fancy_full01.jpg",
       marketplace: "Blibli",
-      link: "https://www.blibli.com/p/rt-alta-premium/ps--GAD-70027-00010"
+      link: ""
     }
   ];
   
@@ -174,7 +174,7 @@ export const shopeeProducts = [
       price: "Rp 729.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-polos-berat-38gr-i12345678.html"
+      link: ""
     },
     {
       id: 2,
@@ -182,7 +182,7 @@ export const shopeeProducts = [
       price: "Rp 986.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-berlian-kecil-berat-42gr-i23456789.html"
+      link: ""
     },
     {
       id: 3,
@@ -190,7 +190,7 @@ export const shopeeProducts = [
       price: "Rp 1.439.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-couple-berat-75gr-sepasang-i34567890.html"
+      link: ""
     },
     {
       id: 4,
@@ -198,7 +198,7 @@ export const shopeeProducts = [
       price: "Rp 691.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-ukir-bunga-berat-36gr-i45678901.html"
+      link: ""
     },
     {
       id: 5,
@@ -206,7 +206,7 @@ export const shopeeProducts = [
       price: "Rp 787.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-tali-simpul-berat-41gr-i56789012.html"
+      link: ""
     },
     {
       id: 6,
@@ -214,7 +214,7 @@ export const shopeeProducts = [
       price: "Rp 1.247.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-tunangan-ruby-berat-53gr-i67890123.html"
+      link: ""
     },
     {
       id: 7,
@@ -222,7 +222,7 @@ export const shopeeProducts = [
       price: "Rp 902.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-retro-vintage-berat-47gr-i78901234.html"
+      link: ""
     },
     {
       id: 8,
@@ -230,7 +230,7 @@ export const shopeeProducts = [
       price: "Rp 1.153.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-safir-biru-berat-49gr-i89012345.html"
+      link: ""
     },
     {
       id: 9,
@@ -238,6 +238,6 @@ export const shopeeProducts = [
       price: "Rp 1.170.000",
       image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
       marketplace: "Lazada",
-      link: "https://www.lazada.co.id/products/cincin-emas-motif-naga-berat-61gr-i90123456.html"
+      link: ""
     }
   ];
