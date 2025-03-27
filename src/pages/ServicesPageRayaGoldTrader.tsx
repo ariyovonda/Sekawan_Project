@@ -192,7 +192,7 @@ const GoldProductCard = ({ item }) => (
                   <div className="flex items-center mb-4 md:mb-6 lg:mb-8">
                     <div className="mr-3">
                       <img
-                        src="https://res.cloudinary.com/dqrazyfpm/image/upload/v1742739708/Frame_17_rdshxw.png"
+                        src="https://res.cloudinary.com/dqrazyfpm/image/upload/v1743086568/logorayagold_igfsvf.png"
                         alt="Gold Icon"
                         className="w-10 h-10 md:w-12 md:h-12 object-contain"
                         onError={(e) => {
@@ -217,9 +217,11 @@ const GoldProductCard = ({ item }) => (
               {/* Image Card - Full width on mobile, half on larger screens */}
               <div className="w-full lg:w-1/2 order-1 lg:order-2 mb-6 lg:mb-0">
                 <AnimatedSection delay={100}>
-                  <div className="glass-card p-4 md:p-6 rounded-xl shadow-gold/20 shadow-lg flex items-center justify-center h-[200px] sm:h-[240px] md:h-[280px] w-full">
+                  <div className="glass-card-dark md:p-6 rounded-xl shadow-lg flex items-center justify-center h-[200px] sm:h-[240px] md:h-[280px] w-full overflow-hidden">
+                    <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
+                    <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gold/5 filter blur-3xl"></div>
                     <img
-                      src="https://res.cloudinary.com/dqrazyfpm/image/upload/v1742739708/Frame_17_rdshxw.png"
+                      src="https://res.cloudinary.com/dqrazyfpm/image/upload/v1743086568/logorayagold_igfsvf.png"
                       alt="Raya Gold Trader"
                       className="max-w-24 max-h-24 sm:max-w-28 sm:max-h-28 md:max-w-36 md:max-h-36"
                       onError={(e) => {
