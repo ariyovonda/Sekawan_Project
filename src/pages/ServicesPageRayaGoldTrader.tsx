@@ -252,7 +252,7 @@ const GoldProductCard = ({ item }) => (
                   value="shopee"
                   className={cn(
                     "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
-                    "rounded-none bg-transparent text-luxury-700 pb-2"
+                    "rounded-none bg-transparent text-luxury-700 pb-2 text-xl "
                   )}
                 >
                   Shopee
@@ -261,12 +261,12 @@ const GoldProductCard = ({ item }) => (
                   value="blibli"
                   className={cn(
                     "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
-                    "rounded-none bg-transparent text-luxury-700 pb-2"
+                    "rounded-none bg-transparent text-luxury-700 pb-2 text-xl "
                   )}
                 >
                   Blibli
                 </TabsTrigger>
-                <TabsTrigger
+                {/* <TabsTrigger
                   value="lazada"
                   className={cn(
                     "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
@@ -274,7 +274,7 @@ const GoldProductCard = ({ item }) => (
                   )}
                 >
                   Lazada
-                </TabsTrigger>
+                </TabsTrigger> */}
               </TabsList>
 
               <TabsContent value="shopee" className="mt-0">

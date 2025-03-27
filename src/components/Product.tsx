@@ -168,76 +168,76 @@ export const shopeeProducts = [
   
   // Data produk untuk Lazada
   export const lazadaProducts = [
-    {
-      id: 1,
-      name: "Cincin Emas Polos Berat 3.8gr",
-      price: "Rp 729.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 2,
-      name: "Cincin Emas Berlian Kecil Berat 4.2gr",
-      price: "Rp 986.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 3,
-      name: "Cincin Emas Couple Berat 7.5gr (Sepasang)",
-      price: "Rp 1.439.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 4,
-      name: "Cincin Emas Ukir Bunga Berat 3.6gr",
-      price: "Rp 691.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 5,
-      name: "Cincin Emas Tali Simpul Berat 4.1gr",
-      price: "Rp 787.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 6,
-      name: "Cincin Emas Tunangan Ruby Berat 5.3gr",
-      price: "Rp 1.247.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 7,
-      name: "Cincin Emas Retro Vintage Berat 4.7gr",
-      price: "Rp 902.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 8,
-      name: "Cincin Emas Safir Biru Berat 4.9gr",
-      price: "Rp 1.153.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    },
-    {
-      id: 9,
-      name: "Cincin Emas Motif Naga Berat 6.1gr",
-      price: "Rp 1.170.000",
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-      marketplace: "Lazada",
-      link: ""
-    }
+    // {
+    //   id: 1,
+    //   name: "Cincin Emas Polos Berat 3.8gr",
+    //   price: "Rp 729.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 2,
+    //   name: "Cincin Emas Berlian Kecil Berat 4.2gr",
+    //   price: "Rp 986.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 3,
+    //   name: "Cincin Emas Couple Berat 7.5gr (Sepasang)",
+    //   price: "Rp 1.439.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 4,
+    //   name: "Cincin Emas Ukir Bunga Berat 3.6gr",
+    //   price: "Rp 691.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 5,
+    //   name: "Cincin Emas Tali Simpul Berat 4.1gr",
+    //   price: "Rp 787.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 6,
+    //   name: "Cincin Emas Tunangan Ruby Berat 5.3gr",
+    //   price: "Rp 1.247.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 7,
+    //   name: "Cincin Emas Retro Vintage Berat 4.7gr",
+    //   price: "Rp 902.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 8,
+    //   name: "Cincin Emas Safir Biru Berat 4.9gr",
+    //   price: "Rp 1.153.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // },
+    // {
+    //   id: 9,
+    //   name: "Cincin Emas Motif Naga Berat 6.1gr",
+    //   price: "Rp 1.170.000",
+    //   image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
+    //   marketplace: "Lazada",
+    //   link: ""
+    // }
   ];
