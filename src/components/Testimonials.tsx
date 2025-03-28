@@ -7,22 +7,22 @@ const testimonials = [
   {
     name: "Budi Santoso",
     role: "Pengusaha UMKM",
-    content: "DanaSejahtera membantu saya mendapatkan modal usaha dengan proses cepat dan bunga rendah. Berkat dukungan mereka, bisnis kuliner saya bisa berkembang pesat.",
+    content: "Sekawan membantu saya mendapatkan modal usaha dengan proses cepat dan bunga rendah. Berkat dukungan mereka, bisnis kuliner saya bisa berkembang pesat.",
   },
   {
     name: "Siti Rahayu",
     role: "Ibu Rumah Tangga",
-    content: "Saat membutuhkan dana mendesak untuk biaya pendidikan anak, DanaSejahtera memberikan solusi gadai yang aman dan terpercaya. Prosesnya mudah dan nilai taksirannya sangat memuaskan.",
+    content: "Saat membutuhkan dana mendesak untuk biaya pendidikan anak, Sekawan memberikan solusi gadai yang aman dan terpercaya. Prosesnya mudah dan nilai taksirannya sangat memuaskan.",
   },
   {
     name: "Andi Wijaya",
     role: "Karyawan Swasta",
-    content: "Saya rutin berinvestasi emas di DanaSejahtera karena transparansi dan pelayanannya yang profesional. Investasi jadi lebih mudah dan terjamin keamanannya.",
+    content: "Saya rutin berinvestasi emas di Sekawan karena transparansi dan pelayanannya yang profesional. Investasi jadi lebih mudah dan terjamin keamanannya.",
   },
   {
     name: "Maya Anggraini",
     role: "Pemilik Toko Online",
-    content: "Layanan pembiayaan usaha dari DanaSejahtera membantu toko online saya bertahan di masa pandemi. Proses pengajuan cepat dan persyaratannya tidak rumit.",
+    content: "Layanan pembiayaan usaha dari Sekawan membantu toko online saya bertahan di masa pandemi. Proses pengajuan cepat dan persyaratannya tidak rumit.",
   },
 ];
 

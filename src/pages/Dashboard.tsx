@@ -154,15 +154,16 @@ const Dashboard: React.FC = () => {
           </div>
         </header>
 
-        <main className="p-6">
-          <Routes>
-            <Route path="/dashboard" element={<DashboardHome />} />
-            <Route path="/categories" element={<CategoryManager />} />
-            <Route path="/images" element={<ImageManager />} />
-            <Route path="/links" element={<LinkManager />} />
-            <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
-          </Routes>
-        </main>
+        <main className="p-4 sm:p-6 md:p-8">
+  <Routes>
+    <Route path="/dashboard" element={<DashboardHome />} />
+    <Route path="/categories" element={<CategoryManager />} />
+    <Route path="/images" element={<ImageManager />} />
+    <Route path="/links" element={<LinkManager />} />
+    <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
+  </Routes>
+</main>
+
       </div>
     </div>
   );

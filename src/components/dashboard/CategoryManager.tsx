@@ -165,93 +165,99 @@ const CategoryManager: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gold">Kategori & Produk</h2>
-        <div className="flex space-x-4">
-          <div className="flex items-center space-x-2 bg-luxury-50 border border-gold/20 rounded-md p-1">
-            <button
-              onClick={() => setViewMode('grid')}
-              className={cn(
-                "p-1 rounded",
-                viewMode === 'grid' ? "bg-gold/20 text-gold" : "text-luxury-700 hover:text-gold"
-              )}
-            >
-              <Grid size={20} />
-            </button>
-            <button
-              onClick={() => setViewMode('list')}
-              className={cn(
-                "p-1 rounded",
-                viewMode === 'list' ? "bg-gold/20 text-gold" : "text-luxury-700 hover:text-gold"
-              )}
-            >
-              <List size={20} />
-            </button>
+      <div className="flex flex-wrap justify-between items-center gap-4">
+  <h2 className="text-xl sm:text-2xl font-bold text-gold">Kategori & Produk</h2>
+
+  <div className="flex flex-wrap gap-2 sm:space-x-4">
+    <div className="flex items-center space-x-2 bg-luxury-50 border border-gold/20 rounded-md p-1">
+      <button
+        onClick={() => setViewMode("grid")}
+        className={cn(
+          "p-1 rounded",
+          viewMode === "grid" ? "bg-gold/20 text-gold" : "text-luxury-700 hover:text-gold"
+        )}
+      >
+        <Grid size={20} />
+      </button>
+      <button
+        onClick={() => setViewMode("list")}
+        className={cn(
+          "p-1 rounded",
+          viewMode === "list" ? "bg-gold/20 text-gold" : "text-luxury-700 hover:text-gold"
+        )}
+      >
+        <List size={20} />
+      </button>
+    </div>
+
+    {activeTab === "categories" && (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button className="bg-gold hover:bg-gold-dark text-luxury-200 text-sm sm:text-base">
+            <Plus size={16} className="mr-2" />
+            Tambah Kategori
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="bg-luxury-50 border-gold/20 w-full max-w-sm sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-gold">Tambah Kategori Baru</DialogTitle>
+            <DialogDescription className="text-luxury-700">
+              Masukkan detail kategori baru di bawah ini.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="store" className="text-white">Marketplace</Label>
+              <select
+                id="store"
+                className="w-full px-3 py-2 border border-gold/20 rounded-md bg-luxury-100 text-white"
+                value={newCategory.storeId}
+                onChange={(e) => setNewCategory({...newCategory, storeId: e.target.value})}
+              >
+                {stores.map(store => (
+                  <option key={store.id} value={store.id}>{store.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-white">Nama Kategori</Label>
+              <Input
+                id="name"
+                placeholder="Masukkan nama kategori"
+                value={newCategory.name}
+                onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}
+                className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="description" className="text-white">Deskripsi</Label>
+              <Textarea
+                id="description"
+                placeholder="Masukkan deskripsi kategori"
+                value={newCategory.description}
+                onChange={(e) => setNewCategory({...newCategory, description: e.target.value})}
+                className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
+              />
+            </div>
           </div>
-          
-          {activeTab === 'categories' && (
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button className="bg-gold hover:bg-gold-dark text-luxury-200">
-                  <Plus size={16} className="mr-2" />
-                  Tambah Kategori
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="bg-luxury-50 border-gold/20">
-                <DialogHeader>
-                  <DialogTitle className="text-gold">Tambah Kategori Baru</DialogTitle>
-                  <DialogDescription className="text-luxury-700">
-                    Masukkan detail kategori baru di bawah ini.
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="space-y-4 py-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="store" className="text-white">Marketplace</Label>
-                    <select
-                      id="store"
-                      className="w-full px-3 py-2 border border-gold/20 rounded-md bg-luxury-100 text-white"
-                      value={newCategory.storeId}
-                      onChange={(e) => setNewCategory({...newCategory, storeId: e.target.value})}
-                    >
-                      {stores.map(store => (
-                        <option key={store.id} value={store.id}>{store.name}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-white">Nama Kategori</Label>
-                    <Input
-                      id="name"
-                      placeholder="Masukkan nama kategori"
-                      value={newCategory.name}
-                      onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}
-                      className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="description" className="text-white">Deskripsi</Label>
-                    <Textarea
-                      id="description"
-                      placeholder="Masukkan deskripsi kategori"
-                      value={newCategory.description}
-                      onChange={(e) => setNewCategory({...newCategory, description: e.target.value})}
-                      className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
-                    />
-                  </div>
-                </div>
-                <DialogFooter>
-                  <DialogClose asChild>
-                    <Button variant="outline" className="border-gold/20 text-luxury-700 hover:text-white">Batal</Button>
-                  </DialogClose>
-                  <DialogClose asChild>
-                    <Button onClick={handleAddCategory} className="bg-gold hover:bg-gold-dark text-luxury-200">Simpan</Button>
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
-          )}
-        </div>
-      </div>
+          <DialogFooter className="flex flex-col sm:flex-row gap-2">
+            <DialogClose asChild>
+              <Button variant="outline" className="border-gold/20 text-luxury-700 hover:text-white w-full sm:w-auto">
+                Batal
+              </Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button onClick={handleAddCategory} className="bg-gold hover:bg-gold-dark text-luxury-200 w-full sm:w-auto">
+                Simpan
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    )}
+  </div>
+</div>
+
 
       {/* Tab untuk memilih antara Kategori dan Produk */}
       <div className="flex space-x-4 border-b border-gold/20 mb-6">
