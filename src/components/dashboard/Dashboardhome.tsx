@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import AuthService from "@/services/authService";
 
-// Import data produk
-import { shopeeProducts, blibliProducts } from '../../components/Product';
+// Define types for our data
+interface Category {
+  id: number;
+  name: string;
+  order: number;
+}
 
-// Fungsi untuk mengekstrak kategori dari nama produk
-function extractCategory(name) {
+interface Link {
+  id: number;
+  title: string;
+  url: string;
+  image_url: string;
+  price: number;
+  price_str: string;
+  is_active: boolean;
+  category_id: number;
+  category?: {
+    id: number;
+    name: string;
+  };
+}
+
+// Extract category function
+function extractCategory(name: string): string {
   const nameLower = name.toLowerCase();
  
   if (nameLower.includes("kalung") || nameLower.includes("rantai")) {
@@ -23,117 +43,160 @@ function extractCategory(name) {
   }
 }
 
-// Transformasi data produk dari Shopee dan Blibli
-const transformedShopeeProducts = shopeeProducts.map(product => ({
-  ...product,
-  id: product.id.toString(),
-  category: extractCategory(product.name)
-}));
-
-const transformedBlibliProducts = blibliProducts.map(product => ({
-  ...product,
-  id: product.id.toString(),
-  category: extractCategory(product.name)
-}));
-
-// Gabungkan semua produk
-const initialProducts = [...transformedShopeeProducts, ...transformedBlibliProducts];
-
-// Ekstrak kategori unik dari produk
-const uniqueCategories = [...new Set(initialProducts.map(product => product.category))];
-
-// Data awal untuk kategori
-const initialCategories = uniqueCategories.map((category, index) => {
-  const descriptions = {
-    "kalung": "Berbagai jenis kalung emas",
-    "gelang": "Berbagai jenis gelang emas",
-    "cincin": "Berbagai jenis cincin emas",
-    "anting": "Berbagai jenis anting emas",
-    "lainnya": "Produk perhiasan emas lainnya"
-  };
- 
-  return {
-    id: (index + 1).toString(),
-    name: category.charAt(0).toUpperCase() + category.slice(1),
-    description: descriptions[category] || "Berbagai jenis perhiasan emas"
-  };
-});
-
 // Komponen Halaman Dashboard Utama
 const DashboardHome: React.FC = () => {
-  // Hitung jumlah marketplace unik
-  const uniqueMarketplaces = [...new Set(initialProducts.map(product => product.marketplace))];
- 
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [links, setLinks] = useState<Link[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const token = AuthService.getToken();
+        if (!token) {
+          throw new Error("No authentication token");
+        }
+
+        // Fetch categories
+        const categoriesResponse = await fetch(
+          "https://api.sekawan-grup.com/api/categories",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!categoriesResponse.ok) {
+          throw new Error("Failed to fetch categories");
+        }
+
+        const categoriesData = await categoriesResponse.json();
+        setCategories(categoriesData);
+
+        // Fetch links
+        const linksResponse = await fetch(
+          "https://api.sekawan-grup.com/api/links",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!linksResponse.ok) {
+          throw new Error("Failed to fetch links");
+        }
+
+        const linksData = await linksResponse.json();
+        setLinks(linksData);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError(err instanceof Error ? err.message : "An unexpected error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Get unique marketplaces
+  const uniqueMarketplaces = [...new Set(links.map(link => 
+    link.category ? link.category.name : "Unknown"
+  ))];
+
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
-          <CardHeader className="pb-2 border-b border-gold/10">
-            <CardTitle className="text-lg text-gold">Total Produk</CardTitle>
-            <CardDescription className="text-luxury-700">Semua produk di semua marketplace</CardDescription>
-          </CardHeader>
-          <CardContent className="pt-4">
-            <p className="text-3xl font-bold text-white">{initialProducts.length}</p>
-          </CardContent>
-        </Card>
-       
-        <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
-          <CardHeader className="pb-2 border-b border-gold/10">
-            <CardTitle className="text-lg text-gold">Kategori</CardTitle>
-            <CardDescription className="text-luxury-700">Jumlah kategori produk</CardDescription>
-          </CardHeader>
-          <CardContent className="pt-4">
-            <p className="text-3xl font-bold text-white">{initialCategories.length}</p>
-          </CardContent>
-        </Card>
-       
-        <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
-          <CardHeader className="pb-2 border-b border-gold/10">
-            <CardTitle className="text-lg text-gold">Marketplace</CardTitle>
-            <CardDescription className="text-luxury-700">Jumlah marketplace</CardDescription>
-          </CardHeader>
-          <CardContent className="pt-4">
-            <p className="text-3xl font-bold text-white">{uniqueMarketplaces.length}</p>
-            <p className="text-sm text-luxury-700 mt-2">{uniqueMarketplaces.join(", ")}</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
-        <CardHeader className="border-b border-gold/10">
-          <CardTitle className="text-gold">Produk Terbaru</CardTitle>
-          <CardDescription className="text-luxury-700">Daftar produk yang baru ditambahkan</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-4">
-          <div className="space-y-4">
-            {initialProducts.slice(0, 5).map(product => (
-              <div key={product.id} className="flex items-center border-b border-gold/10 pb-4">
-                <div className="w-12 h-12 rounded bg-luxury-100 overflow-hidden flex-shrink-0">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = "https://via.placeholder.com/150/D4AF37/000000?text=GOLD";
-                    }}
-                  />
-                </div>
-                <div className="ml-4">
-                  <p className="font-medium text-white">{product.name}</p>
-                  <p className="text-sm text-luxury-700">{product.marketplace} · {product.price}</p>
-                </div>
-              </div>
-            ))}
+      {loading ? (
+        <div className="flex justify-center items-center h-40">
+          <div className="w-10 h-10 border-4 border-gold/30 border-t-gold rounded-full animate-spin"></div>
+        </div>
+      ) : error ? (
+        <div className="text-center text-red-400 py-6">
+          <p>{error}</p>
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
+              <CardHeader className="pb-2 border-b border-gold/10">
+                <CardTitle className="text-lg text-gold">Total Produk</CardTitle>
+                <CardDescription className="text-luxury-700">Semua produk di semua marketplace</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <p className="text-3xl font-bold text-white">{links.length}</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
+              <CardHeader className="pb-2 border-b border-gold/10">
+                <CardTitle className="text-lg text-gold">Kategori</CardTitle>
+                <CardDescription className="text-luxury-700">Jumlah kategori produk</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <p className="text-3xl font-bold text-white">{categories.length}</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
+              <CardHeader className="pb-2 border-b border-gold/10">
+                <CardTitle className="text-lg text-gold">Marketplace</CardTitle>
+                <CardDescription className="text-luxury-700">Jumlah marketplace</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-4">
+                <p className="text-3xl font-bold text-white">{uniqueMarketplaces.length}</p>
+                <p className="text-sm text-luxury-700 mt-2">{uniqueMarketplaces.join(", ")}</p>
+              </CardContent>
+            </Card>
           </div>
-        </CardContent>
-        <CardFooter className="border-t border-gold/10 bg-luxury-100/20">
-          <RouterLink to="/admin/images">
-            <Button className="bg-gold hover:bg-gold-dark text-luxury-200">
-              Lihat Semua Produk
-            </Button>
-          </RouterLink>
-        </CardFooter>
-      </Card>
+
+          <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
+            <CardHeader className="border-b border-gold/10">
+              <CardTitle className="text-gold">Produk Terbaru</CardTitle>
+              <CardDescription className="text-luxury-700">Daftar produk yang baru ditambahkan</CardDescription>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <div className="space-y-4">
+                {links.slice(0, 5).map(link => (
+                  <div key={link.id} className="flex items-center border-b border-gold/10 pb-4">
+                    <div className="w-12 h-12 rounded bg-luxury-100 overflow-hidden flex-shrink-0">
+                      <img
+                        src={link.image_url}
+                        alt={link.title}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = "https://via.placeholder.com/150/D4AF37/000000?text=GOLD";
+                        }}
+                      />
+                    </div>
+                    <div className="ml-4">
+                      <p className="font-medium text-white">{link.title}</p>
+                      <p className="text-sm text-luxury-700">
+                        {link.category ? link.category.name : "Unknown"} · {link.price_str}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+            <CardFooter className="border-t border-gold/10 bg-luxury-100/20">
+              <RouterLink to="/admin/links">
+                <Button className="bg-gold hover:bg-gold-dark text-luxury-200">
+                  Lihat Semua Produk
+                </Button>
+              </RouterLink>
+            </CardFooter>
+          </Card>
+        </>
+      )}
     </div>
   );
 };
