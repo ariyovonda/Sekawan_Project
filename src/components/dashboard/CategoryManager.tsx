@@ -288,14 +288,6 @@ const CategoryManager: React.FC = () => {
               value={store.id}
               className="flex items-center space-x-2 data-[state=active]:bg-gold/20 data-[state=active]:text-gold"
             >
-              <img 
-                src={store.logo} 
-                alt={store.name}
-                className="w-4 h-4 object-contain"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/40/D4AF37/000000?text=S";
-                }}
-              />
               <span>{store.name}</span>
             </TabsTrigger>
           ))}
@@ -305,14 +297,7 @@ const CategoryManager: React.FC = () => {
           <TabsContent key={store.id} value={store.id} className="mt-0">
             {/* Label untuk toko yang dipilih */}
             <div className="flex items-center mb-4 pb-2 border-b border-gold/10">
-              <img 
-                src={store.logo} 
-                alt={store.name}
-                className="w-6 h-6 object-contain mr-2"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/40/D4AF37/000000?text=S";
-                }}
-              />
+              
               <h3 className="text-lg font-medium text-gold">{store.name}</h3>
               <div className="text-sm text-luxury-700 ml-4">
                 {activeTab === 'categories' 

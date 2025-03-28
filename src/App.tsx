@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import ServicesPageRayaGoldTrader from "./pages/ServicesPageRayaGoldTrader";
 import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import ChangePw from "./pages/changepw";
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/services/raya-gold-trader" element={<ServicesPageRayaGoldTrader />} />
             <Route path="/admin/*" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/changepw" element={<ChangePw />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
