@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
@@ -175,7 +174,6 @@ const GoldProductCard = ({ item }) => (
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-luxury">
-      <Navbar />
       <VisitorCounter />
       <main>
         <section className="pt-20 md:pt-24 lg:pt-32 pb-8 md:pb-12 lg:pb-16">

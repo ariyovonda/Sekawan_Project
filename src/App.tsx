@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,10 +7,13 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ServicesPageRayaGoldTrader from "./pages/ServicesPageRayaGoldTrader";
 import { useState } from "react";
+import Dashboard from "./pages/Dashboard";
+
 
 function App() {
   // Create a client inside the component to properly initialize React Query
   const [queryClient] = useState(() => new QueryClient());
+
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -22,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services/raya-gold-trader" element={<ServicesPageRayaGoldTrader />} />
+            <Route path="/admin/*" element={<Dashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -30,5 +33,6 @@ function App() {
     </QueryClientProvider>
   );
 }
+
 
 export default App;
