@@ -1,6 +1,7 @@
+// src/pages/Login.tsx
 import React, { useState, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LogIn } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,62 +13,46 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import AuthService from "@/services/authService";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // For responsiveness
-  const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 0);
-
-  // Handle window resize for responsiveness
-  React.useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-    
-    // Clean up
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  // Hook navigasi untuk perpindahan halaman
+  const navigate = useNavigate();
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    // Validate form
-    if (!email || !password) {
-      setError("Email dan password harus diisi");
+
+    // Validasi form
+    if (!username || !password) {
+      setError("Username dan password harus diisi");
       return;
     }
-    
-    // Reset error state
+
+    // Reset state error
     setError("");
     setIsLoading(true);
-    
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Here you would handle actual authentication
-      console.log("Login attempt with:", { email, rememberMe });
-      
-      // Redirect to dashboard on success
-      window.location.href = "/admin/dashboard";
+      // Gunakan AuthService untuk login
+      await AuthService.login(username, password, rememberMe);
+
+      // Navigate ke dashboard setelah login berhasil
+      navigate("/admin/dashboard");
     } catch (err) {
-      setError("Login gagal. Silakan periksa email dan password Anda.");
+      // Tangani error login
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Login gagal. Silakan periksa username dan password Anda."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -80,42 +65,54 @@ const Login: React.FC = () => {
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-gold">RayaGoldTrader</h1>
         </div>
-        
+
         <Card className="bg-black/60 backdrop-blur-sm border border-gold/30 shadow-lg shadow-gold/10">
           <CardHeader className="space-y-1">
-            <CardTitle className="text-xl sm:text-2xl font-bold text-gold text-center">Login</CardTitle>
+            <CardTitle className="text-xl sm:text-2xl font-bold text-gold text-center">
+              Login
+            </CardTitle>
             <CardDescription className="text-luxury-400 text-center text-sm sm:text-base">
               Masukkan kredensial Anda untuk mengakses panel
             </CardDescription>
           </CardHeader>
-          
+
           <form onSubmit={handleLogin}>
             <CardContent className="space-y-4">
               {error && (
-                <Alert variant="destructive" className="bg-red-900/20 border-red-800 text-red-200">
+                <Alert
+                  variant="destructive"
+                  className="bg-red-900/20 border-red-800 text-red-200"
+                >
                   <AlertTitle className="text-red-200">Error</AlertTitle>
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
               )}
-              
+
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-white text-sm sm:text-base">Email</Label>
+                <Label
+                  htmlFor="username"
+                  className="text-white text-sm sm:text-base"
+                >
+                  Username
+                </Label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="contoh@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="username"
+                  type="text"
+                  placeholder="contoh"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="bg-black/50 border-gold/30 text-white placeholder:text-luxury-500 focus:border-gold focus:ring-gold/40"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <Label htmlFor="password" className="text-white text-sm sm:text-base">Password</Label>
-                  <a href="#" className="text-sm text-gold hover:underline">
-                    Lupa password?
-                  </a>
+                  <Label
+                    htmlFor="password"
+                    className="text-white text-sm sm:text-base"
+                  >
+                    Password
+                  </Label>
                 </div>
                 <div className="relative">
                   <Input
@@ -135,7 +132,7 @@ const Login: React.FC = () => {
                   </button>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-2">
                 <input
                   type="checkbox"
@@ -144,15 +141,18 @@ const Login: React.FC = () => {
                   onChange={(e) => setRememberMe(e.target.checked)}
                   className="w-4 h-4 rounded border-gold/40 bg-black/50 text-gold focus:ring-gold/40"
                 />
-                <Label htmlFor="remember" className="text-luxury-300 text-sm cursor-pointer">
+                <Label
+                  htmlFor="remember"
+                  className="text-luxury-300 text-sm cursor-pointer"
+                >
                   Ingat saya
                 </Label>
               </div>
             </CardContent>
-            
+
             <CardFooter>
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-gradient-to-r from-gold/90 to-gold hover:from-gold hover:to-gold-dark text-black font-medium transition-all duration-300"
                 disabled={isLoading}
               >
@@ -171,10 +171,11 @@ const Login: React.FC = () => {
             </CardFooter>
           </form>
         </Card>
-        
+
         {/* Copyright footer */}
         <div className="mt-6 text-center text-luxury-500 text-xs">
-          &copy; {new Date().getFullYear()} RayaGoldTrader. Seluruh hak cipta dilindungi.
+          &copy; {new Date().getFullYear()} RayaGoldTrader. Seluruh hak cipta
+          dilindungi.
         </div>
       </div>
     </div>

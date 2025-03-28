@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
@@ -6,70 +6,159 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { shopeeProducts, blibliProducts, lazadaProducts } from "@/components/Product";
 import VisitorCounter from "@/components/VisitorCounter";
 
+// Define interfaces for type safety
+interface Category {
+  id: number;
+  name: string;
+  order: number;
+  links: Link[];
+}
+
+interface Link {
+  id: number;
+  title: string;
+  url: string;
+  image_url: string;
+  price: number;
+  price_str: string;
+  is_active: boolean;
+  category_id: number;
+}
+
+interface Product {
+  id: number;
+  name: string;
+  image: string;
+  price: string;
+  link?: string;
+  marketplace: string;
+  is_active: boolean;
+}
+
 const ServicesPageRayaGoldTrader = () => {
+  // State for storing categories and products
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [productsByCategory, setProductsByCategory] = useState<Record<number, Product[]>>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch categories with their links
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        // Fetch from the public endpoint
+        const response = await fetch("https://api.sekawan-grup.com/api/categories-with-links");
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        
+        const categoriesWithLinks = await response.json() as Category[];
+        
+        // Sort categories by order
+        const sortedCategories = [...categoriesWithLinks].sort((a, b) => a.order - b.order);
+        setCategories(sortedCategories);
+        
+        // Process links into products by category
+        const productsByCat: Record<number, Product[]> = {};
+        
+        sortedCategories.forEach(category => {
+          if (category.links && category.links.length > 0) {
+            // Convert links to products format
+            productsByCat[category.id] = category.links.map(link => ({
+              id: link.id,
+              name: link.title,
+              image: link.image_url,
+              price: link.price_str,
+              link: link.url,
+              marketplace: category.name,
+              is_active: link.is_active
+            }));
+          } else {
+            productsByCat[category.id] = [];
+          }
+        });
+        
+        setProductsByCategory(productsByCat);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred");
+        }
+        console.error("Error fetching data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   // Card Produk
-  // Card Produk
-const GoldProductCard = ({ item }) => (
-  <div className="bg-luxury-50 rounded-lg overflow-hidden min-w-[240px] w-[240px] mx-2 flex-shrink-0 hover:shadow-lg hover:shadow-gold/10 transition-all duration-300 hover:translate-y-[-5px]">
-    <div className="h-48 w-full overflow-hidden">
-      {item.link ? (
-        <a href={item.link} target="_blank" rel="noopener noreferrer">
+  const GoldProductCard = ({ item }: { item: Product }) => (
+    <div className="bg-luxury-50 rounded-lg overflow-hidden min-w-[240px] w-[240px] mx-2 flex-shrink-0 hover:shadow-lg hover:shadow-gold/10 transition-all duration-300 hover:translate-y-[-5px]">
+      <div className="h-48 w-full overflow-hidden">
+        {item.link ? (
+          <a href={item.link} target="_blank" rel="noopener noreferrer">
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80";
+              }}
+            />
+          </a>
+        ) : (
           <img
             src={item.image}
             alt={item.name}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            className="w-full h-full object-cover"
             onError={(e) => {
-              e.currentTarget.src = "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80";
+              const target = e.target as HTMLImageElement;
+              target.src = "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80";
             }}
           />
-        </a>
-      ) : (
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            e.currentTarget.src = "https://images.unsplash.com/photo-1619119069152-a2b331eb392a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80";
-          }}
-        />
-      )}
-    </div>
-    <div className="p-3">
-      {item.link ? (
-        <a href={item.link} target="_blank" rel="noopener noreferrer" className="no-underline">
-          <h3 className="text-sm text-white mb-2 line-clamp-2 h-10 hover:text-gold transition-colors">{item.name}</h3>
-        </a>
-      ) : (
-        <h3 className="text-sm text-white mb-2 line-clamp-2 h-10">{item.name}</h3>
-      )}
-      <div className="flex justify-between items-center">
+        )}
+      </div>
+      <div className="p-3">
         {item.link ? (
           <a href={item.link} target="_blank" rel="noopener noreferrer" className="no-underline">
-            <Button size="sm" className="bg-gold hover:bg-gold-dark text-luxury-200 text-xs px-3 py-1">
-              Buy Now
-            </Button>
+            <h3 className="text-sm text-white mb-2 line-clamp-2 h-10 hover:text-gold transition-colors">{item.name}</h3>
           </a>
         ) : (
-          <Button size="sm" className="bg-gray-500 hover:bg-gray-600 text-luxury-200 text-xs px-3 py-1" disabled>
-            Coming Soon
-          </Button>
+          <h3 className="text-sm text-white mb-2 line-clamp-2 h-10">{item.name}</h3>
         )}
-        <span className="text-gold font-semibold">{item.price}</span>
-      </div>
-      <div className="flex items-center justify-center mt-3">
-        <ShoppingBag className="w-4 h-4 mr-1 text-luxury-700" />
-        <span className="text-xs text-luxury-700">{item.marketplace}</span>
+        <div className="flex justify-between items-center">
+          {item.link ? (
+            <a href={item.link} target="_blank" rel="noopener noreferrer" className="no-underline">
+              <Button size="sm" className="bg-gold hover:bg-gold-dark text-luxury-200 text-xs px-3 py-1">
+                Buy Now
+              </Button>
+            </a>
+          ) : (
+            <Button size="sm" className="bg-gray-500 hover:bg-gray-600 text-luxury-200 text-xs px-3 py-1" disabled>
+              Coming Soon
+            </Button>
+          )}
+          <span className="text-gold font-semibold">{item.price}</span>
+        </div>
+        <div className="flex items-center justify-center mt-3">
+          <ShoppingBag className="w-4 h-4 mr-1 text-luxury-700" />
+          <span className="text-xs text-luxury-700">{item.marketplace}</span>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 
   // Component untuk carousel/slider produk
-  const ProductCarousel = ({ products }) => {
-    const carouselRef = useRef(null);
+  const ProductCarousel = ({ products }: { products: Product[] }) => {
+    const carouselRef = useRef<HTMLDivElement>(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(products.length > 4);
 
@@ -194,7 +283,8 @@ const GoldProductCard = ({ item }) => (
                         alt="Gold Icon"
                         className="w-10 h-10 md:w-12 md:h-12 object-contain"
                         onError={(e) => {
-                          e.currentTarget.src = "https://via.placeholder.com/50/D4AF37/000000?text=GOLD";
+                          const target = e.target as HTMLImageElement;
+                          target.src = "https://via.placeholder.com/50/D4AF37/000000?text=GOLD";
                         }}
                       />
                     </div>
@@ -223,7 +313,8 @@ const GoldProductCard = ({ item }) => (
                       alt="Raya Gold Trader"
                       className="max-w-24 max-h-24 sm:max-w-28 sm:max-h-28 md:max-w-36 md:max-h-36"
                       onError={(e) => {
-                        e.currentTarget.src = "https://via.placeholder.com/150/D4AF37/000000?text=GOLD";
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://via.placeholder.com/150/D4AF37/000000?text=GOLD";
                       }}
                     />
                   </div>
@@ -244,49 +335,53 @@ const GoldProductCard = ({ item }) => (
               </div>
             </AnimatedSection>
 
-            <Tabs defaultValue="shopee" className="w-full">
-              <TabsList className="w-full flex justify-start mb-6 bg-transparent border-b border-luxury-200">
-                <TabsTrigger
-                  value="shopee"
-                  className={cn(
-                    "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
-                    "rounded-none bg-transparent text-luxury-700 pb-2 text-xl "
-                  )}
-                >
-                  Shopee
-                </TabsTrigger>
-                <TabsTrigger
-                  value="blibli"
-                  className={cn(
-                    "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
-                    "rounded-none bg-transparent text-luxury-700 pb-2 text-xl "
-                  )}
-                >
-                  Blibli
-                </TabsTrigger>
-                {/* <TabsTrigger
-                  value="lazada"
-                  className={cn(
-                    "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
-                    "rounded-none bg-transparent text-luxury-700 pb-2"
-                  )}
-                >
-                  Lazada
-                </TabsTrigger> */}
-              </TabsList>
+            {loading ? (
+              <div className="flex justify-center items-center h-40">
+                <div className="w-10 h-10 border-4 border-gold/30 border-t-gold rounded-full animate-spin"></div>
+              </div>
+            ) : error ? (
+              <div className="text-center text-red-400 py-6">
+                <p>Failed to load products. Please try again later.</p>
+              </div>
+            ) : categories.length === 0 ? (
+              <div className="text-center text-luxury-700 py-10">
+                <p>No product categories available.</p>
+              </div>
+            ) : (
+              <Tabs defaultValue={categories[0]?.id.toString()} className="w-full">
+                <TabsList className="w-full flex justify-start mb-6 bg-transparent border-b border-luxury-200">
+                  {categories.map((category) => (
+                    <TabsTrigger
+                      key={category.id}
+                      value={category.id.toString()}
+                      className={cn(
+                        "data-[state=active]:bg-transparent data-[state=active]:text-gold data-[state=active]:border-b-2 data-[state=active]:border-gold",
+                        "rounded-none bg-transparent text-luxury-700 pb-2 text-xl"
+                      )}
+                    >
+                      {category.name}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
 
-              <TabsContent value="shopee" className="mt-0">
-                <ProductCarousel products={shopeeProducts} />
-              </TabsContent>
-
-              <TabsContent value="blibli" className="mt-0">
-                <ProductCarousel products={blibliProducts} />
-              </TabsContent>
-
-              <TabsContent value="lazada" className="mt-0">
-                <ProductCarousel products={lazadaProducts} />
-              </TabsContent>
-            </Tabs>
+                {categories.map((category) => {
+                  // Only display active products on the public site
+                  const activeProducts = productsByCategory[category.id]?.filter(product => product.is_active) || [];
+                  
+                  return (
+                    <TabsContent key={category.id} value={category.id.toString()} className="mt-0">
+                      {activeProducts.length > 0 ? (
+                        <ProductCarousel products={activeProducts} />
+                      ) : (
+                        <div className="text-center text-luxury-700 py-10">
+                          <p>No products available in this category.</p>
+                        </div>
+                      )}
+                    </TabsContent>
+                  );
+                })}
+              </Tabs>
+            )}
           </div>
         </section>
 

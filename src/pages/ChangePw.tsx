@@ -17,6 +17,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@/components/ui/alert";
+import { useNavigate } from "react-router-dom";
 
 interface PasswordRequirement {
   text: string;
@@ -37,13 +38,15 @@ const ChangePw: React.FC = () => {
   // For responsive design
   const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 0);
 
+  // Navigate hook
+  const navigate = useNavigate();
+
   // Password requirements
   const [requirements, setRequirements] = useState<PasswordRequirement[]>([
     { text: "Minimal 8 karakter", met: false },
     { text: "Minimal 1 huruf besar", met: false },
     { text: "Minimal 1 huruf kecil", met: false },
     { text: "Minimal 1 angka", met: false },
-    { text: "Minimal 1 karakter khusus", met: false },
   ]);
 
   // Handle window resize for responsiveness
@@ -66,8 +69,7 @@ const ChangePw: React.FC = () => {
         { text: "Minimal 8 karakter", met: newPassword.length >= 8 },
         { text: "Minimal 1 huruf besar", met: /[A-Z]/.test(newPassword) },
         { text: "Minimal 1 huruf kecil", met: /[a-z]/.test(newPassword) },
-        { text: "Minimal 1 angka", met: /[0-9]/.test(newPassword) },
-        { text: "Minimal 1 karakter khusus", met: /[^A-Za-z0-9]/.test(newPassword) },
+        { text: "Minimal 1 angka", met: /[0-9]/.test(newPassword) },        
       ];
       
       setRequirements(newRequirements);
@@ -106,18 +108,39 @@ const ChangePw: React.FC = () => {
     setIsLoading(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Here you would handle actual password change
-      console.log("Password change attempt with:", { currentPassword, newPassword });
-      
+      // Get token from storage
+      const token = localStorage.getItem("authToken") || 
+                    sessionStorage.getItem("authToken");
+
+      if (!token) {
+        throw new Error("Tidak ada token autentikasi");
+      }
+
+      // API call to change password
+      const response = await fetch("https://api.sekawan-grup.com/api/change-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          current_password: currentPassword,
+          new_password: newPassword
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Gagal mengubah password");
+      }
+
       // Show success message
       setSuccess("Password berhasil diubah");
       
-      // Wait a moment before redirecting
+      // Redirect to dashboard after a short delay
       setTimeout(() => {
-        window.location.href = "/admin/dashboard";
+        navigate("/admin/dashboard");
       }, 2000);
       
       // Reset form
@@ -125,7 +148,7 @@ const ChangePw: React.FC = () => {
       setNewPassword("");
       setConfirmPassword("");
     } catch (err) {
-      setError("Gagal mengubah password. Silakan coba lagi nanti.");
+      setError(err instanceof Error ? err.message : "Gagal mengubah password. Silakan coba lagi nanti.");
     } finally {
       setIsLoading(false);
     }
