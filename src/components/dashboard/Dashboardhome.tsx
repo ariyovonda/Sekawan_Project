@@ -20,27 +20,7 @@ interface Link {
   price_str: string;
   is_active: boolean;
   category_id: number;
-  category?: {
-    id: number;
-    name: string;
-  };
-}
-
-// Extract category function
-function extractCategory(name: string): string {
-  const nameLower = name.toLowerCase();
- 
-  if (nameLower.includes("kalung") || nameLower.includes("rantai")) {
-    return "kalung";
-  } else if (nameLower.includes("gelang") || nameLower.includes("gl ")) {
-    return "gelang";
-  } else if (nameLower.includes("cincin")) {
-    return "cincin";
-  } else if (nameLower.includes("anting")) {
-    return "anting";
-  } else {
-    return "lainnya";
-  }
+  category?: Category;
 }
 
 // Komponen Halaman Dashboard Utama
@@ -81,7 +61,7 @@ const DashboardHome: React.FC = () => {
 
         // Fetch links
         const linksResponse = await fetch(
-          "https://api.sekawan-grup.com/api/links",
+          "https://api.sekawan-grup.com/api/links/all",
           {
             method: "GET",
             headers: {
@@ -108,10 +88,8 @@ const DashboardHome: React.FC = () => {
     fetchData();
   }, []);
 
-  // Get unique marketplaces
-  const uniqueMarketplaces = [...new Set(links.map(link => 
-    link.category ? link.category.name : "Unknown"
-  ))];
+  // Function to get marketplace names (we'll use the categories now)
+  const marketplaceNames = categories.map(category => category.name);
 
   return (
     <div className="space-y-6">
@@ -138,22 +116,27 @@ const DashboardHome: React.FC = () => {
             
             <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
               <CardHeader className="pb-2 border-b border-gold/10">
-                <CardTitle className="text-lg text-gold">Kategori</CardTitle>
-                <CardDescription className="text-luxury-700">Jumlah kategori produk</CardDescription>
+                <CardTitle className="text-lg text-gold">Marketplace</CardTitle>
+                <CardDescription className="text-luxury-700">Jumlah marketplace</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
                 <p className="text-3xl font-bold text-white">{categories.length}</p>
+                <p className="text-sm text-luxury-700 mt-2">{marketplaceNames.join(", ")}</p>
               </CardContent>
             </Card>
             
             <Card className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
               <CardHeader className="pb-2 border-b border-gold/10">
-                <CardTitle className="text-lg text-gold">Marketplace</CardTitle>
-                <CardDescription className="text-luxury-700">Jumlah marketplace</CardDescription>
+                <CardTitle className="text-lg text-gold">Produk Aktif</CardTitle>
+                <CardDescription className="text-luxury-700">Jumlah produk yang aktif</CardDescription>
               </CardHeader>
               <CardContent className="pt-4">
-                <p className="text-3xl font-bold text-white">{uniqueMarketplaces.length}</p>
-                <p className="text-sm text-luxury-700 mt-2">{uniqueMarketplaces.join(", ")}</p>
+                <p className="text-3xl font-bold text-white">
+                  {links.filter(link => link.is_active).length}
+                </p>
+                <p className="text-sm text-luxury-700 mt-2">
+                  {((links.filter(link => link.is_active).length / links.length) * 100).toFixed(0)}% dari total produk
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -165,26 +148,31 @@ const DashboardHome: React.FC = () => {
             </CardHeader>
             <CardContent className="pt-4">
               <div className="space-y-4">
-                {links.slice(0, 5).map(link => (
-                  <div key={link.id} className="flex items-center border-b border-gold/10 pb-4">
-                    <div className="w-12 h-12 rounded bg-luxury-100 overflow-hidden flex-shrink-0">
-                      <img
-                        src={link.image_url}
-                        alt={link.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = "https://via.placeholder.com/150/D4AF37/000000?text=GOLD";
-                        }}
-                      />
+                {links.slice(0, 5).map(link => {
+                  // Find category name using category_id
+                  const categoryName = categories.find(cat => cat.id === link.category_id)?.name || "Unknown";
+                  
+                  return (
+                    <div key={link.id} className="flex items-center border-b border-gold/10 pb-4">
+                      <div className="w-12 h-12 rounded bg-luxury-100 overflow-hidden flex-shrink-0">
+                        <img
+                          src={link.image_url}
+                          alt={link.title}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "https://via.placeholder.com/150/D4AF37/000000?text=GOLD";
+                          }}
+                        />
+                      </div>
+                      <div className="ml-4">
+                        <p className="font-medium text-white">{link.title}</p>
+                        <p className="text-sm text-luxury-700">
+                          {categoryName} · {link.price_str}
+                        </p>
+                      </div>
                     </div>
-                    <div className="ml-4">
-                      <p className="font-medium text-white">{link.title}</p>
-                      <p className="text-sm text-luxury-700">
-                        {link.category ? link.category.name : "Unknown"} · {link.price_str}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </CardContent>
             <CardFooter className="border-t border-gold/10 bg-luxury-100/20">
