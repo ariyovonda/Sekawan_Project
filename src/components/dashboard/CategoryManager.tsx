@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Plus, ChevronDown, ChevronRight, Store, Filter } from "lucide-react";
+import { Plus, Grid, List } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,14 +15,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
 import {
   Tabs,
   TabsContent,
@@ -30,102 +22,42 @@ import {
   TabsTrigger
 } from "@/components/ui/tabs";
 
-// Import data produk
+// Import komponen
+import ProductManager from "./ProductManager";
+import CategoryView from "./CategoryView";
+
+// Import data dan utilitas
 import { shopeeProducts, blibliProducts, lazadaProducts } from '../../components/Product';
-
-// Tipe data untuk kategori
-interface Category {
-  id: string;
-  name: string;
-  description: string;
-  storeId: string; // ID toko terkait
-}
-
-// Tipe data untuk toko
-interface Store {
-  id: string;
-  name: string;
-  logo?: string;
-}
-
-// Fungsi untuk mengekstrak kategori dari nama produk
-function extractCategory(name) {
-  const nameLower = name.toLowerCase();
- 
-  if (nameLower.includes("kalung") || nameLower.includes("rantai")) {
-    return "kalung";
-  } else if (nameLower.includes("gelang") || nameLower.includes("gl ")) {
-    return "gelang";
-  } else if (nameLower.includes("cincin")) {
-    return "cincin";
-  } else if (nameLower.includes("anting")) {
-    return "anting";
-  } else {
-    return "lainnya";
-  }
-}
-
-// Transformasi data produk
-const transformedShopeeProducts = shopeeProducts.map(product => ({
-  ...product,
-  id: product.id.toString(),
-  category: extractCategory(product.name),
-  storeId: "shopee" // ID toko untuk produk Shopee
-}));
-
-const transformedBlibliProducts = blibliProducts.map(product => ({
-  ...product,
-  id: product.id.toString(),
-  category: extractCategory(product.name),
-  storeId: "blibli" // ID toko untuk produk Blibli
-}));
-
-const transformedLazadaProducts = lazadaProducts.map(product => ({
-  ...product,
-  id: product.id.toString(),
-  category: extractCategory(product.name),
-  storeId: "lazada" // ID toko untuk produk Lazada
-}));
-
-// Gabungkan semua produk
-const initialProducts = [
-  ...transformedShopeeProducts, 
-  ...transformedBlibliProducts,
-  ...transformedLazadaProducts
-];
-
-// Data toko
-const stores: Store[] = [
-  { id: "shopee", name: "Shopee", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Shopee_Logo.svg/1200px-Shopee_Logo.svg.png" },
-  { id: "blibli", name: "Blibli", logo: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_blibli.png" },
-  { id: "lazada", name: "Lazada", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Lazada.svg/1200px-Lazada.svg.png" }
-];
+import { 
+  Category, 
+  Product, 
+  Store 
+} from './types';
+import { 
+  extractCategory, 
+  transformProducts, 
+  stores, 
+  getStoreNameById, 
+  categoryDescriptions 
+} from './ProductUtils';
 
 // Membuat kategori berdasarkan toko
-const generateCategoriesByStore = () => {
-  const categoriesByStore = {};
+const generateCategoriesByStore = (products: Product[]) => {
+  const categoriesByStore: Record<string, Category[]> = {};
   
   stores.forEach(store => {
     // Filter produk berdasarkan toko
-    const storeProducts = initialProducts.filter(product => product.storeId === store.id);
+    const storeProducts = products.filter(product => product.storeId === store.id);
     
     // Ambil kategori unik dari produk toko ini
     const uniqueCategories = [...new Set(storeProducts.map(product => product.category))];
     
     // Buat kategori untuk toko ini
     const storeCategories = uniqueCategories.map((category, index) => {
-      const descriptions = {
-        "kalung": "Berbagai jenis kalung emas",
-        "gelang": "Berbagai jenis gelang emas",
-        "cincin": "Berbagai jenis cincin emas",
-        "anting": "Berbagai jenis anting emas",
-        "lainnya": "Produk perhiasan emas lainnya"
-      };
-      
       return {
         id: `${store.id}-${index + 1}`,
-        name: category.charAt(0).toUpperCase() + category.slice(1),
-        description: descriptions[category] || "Berbagai jenis perhiasan emas",
+        name: category ? category.charAt(0).toUpperCase() + category.slice(1) : 'Lainnya',
+        description: categoryDescriptions[category || 'lainnya'] || "Berbagai jenis perhiasan emas",
         storeId: store.id
       };
     });
@@ -136,13 +68,44 @@ const generateCategoriesByStore = () => {
   return categoriesByStore;
 };
 
-// Komponen untuk Mengelola Kategori
+// Transform data produk
+const transformedShopeeProducts = transformProducts(shopeeProducts, 'shopee');
+const transformedBlibliProducts = transformProducts(blibliProducts, 'blibli');
+const transformedLazadaProducts = lazadaProducts && lazadaProducts.length > 0 
+  ? transformProducts(lazadaProducts, 'lazada')
+  : [];
+
+// Gabungkan semua produk
+const initialProducts = [
+  ...transformedShopeeProducts, 
+  ...transformedBlibliProducts,
+  ...transformedLazadaProducts
+];
+
+// Komponen untuk Mengelola Kategori dan Produk
 const CategoryManager: React.FC = () => {
-  const [categoriesByStore, setCategoriesByStore] = useState<Record<string, Category[]>>(generateCategoriesByStore());
+  const [categoriesByStore, setCategoriesByStore] = useState<Record<string, Category[]>>(generateCategoriesByStore(initialProducts));
   const [activeStore, setActiveStore] = useState<string>(stores[0].id);
   const [newCategory, setNewCategory] = useState<Partial<Category>>({ name: "", description: "", storeId: activeStore });
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [activeTab, setActiveTab] = useState<'categories' | 'products'>('categories');
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  // Fungsi untuk mendapatkan produk berdasarkan toko dan kategori
+  const getProductsByStoreAndCategory = (storeId: string, categoryName: string | null) => {
+    return products.filter(product => 
+      product.storeId === storeId && 
+      (categoryName === null || product.category === categoryName.toLowerCase())
+    );
+  };
+
+  // Handler untuk filter produk berdasarkan kategori
+  const handleCategoryFilter = (category: string | null) => {
+    setActiveCategory(category);
+    setActiveTab('products');
+  };
 
   const handleAddCategory = () => {
     if (newCategory.name && newCategory.storeId) {
@@ -155,7 +118,7 @@ const CategoryManager: React.FC = () => {
       
       setCategoriesByStore({
         ...categoriesByStore,
-        [newCategory.storeId]: [...categoriesByStore[newCategory.storeId], category]
+        [newCategory.storeId as string]: [...(categoriesByStore[newCategory.storeId as string] || []), category]
       });
       
       setNewCategory({ name: "", description: "", storeId: activeStore });
@@ -189,17 +152,21 @@ const CategoryManager: React.FC = () => {
   const handleStoreChange = (storeId: string) => {
     setActiveStore(storeId);
     setNewCategory({ ...newCategory, storeId });
+    setActiveCategory(null);
   };
 
-  const getStoreNameById = (storeId: string) => {
-    const store = stores.find(s => s.id === storeId);
-    return store ? store.name : storeId;
+  const handleUpdateProduct = (product: Product, newImageUrl: string) => {
+    setProducts(products.map(p =>
+      p.id === product.id
+        ? { ...p, image: newImageUrl }
+        : p
+    ));
   };
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gold">Kategori Produk</h2>
+        <h2 className="text-2xl font-bold text-gold">Kategori & Produk</h2>
         <div className="flex space-x-4">
           <div className="flex items-center space-x-2 bg-luxury-50 border border-gold/20 rounded-md p-1">
             <button
@@ -209,7 +176,7 @@ const CategoryManager: React.FC = () => {
                 viewMode === 'grid' ? "bg-gold/20 text-gold" : "text-luxury-700 hover:text-gold"
               )}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="7" height="7" x="3" y="3" rx="1" /><rect width="7" height="7" x="14" y="3" rx="1" /><rect width="7" height="7" x="14" y="14" rx="1" /><rect width="7" height="7" x="3" y="14" rx="1" /></svg>
+              <Grid size={20} />
             </button>
             <button
               onClick={() => setViewMode('list')}
@@ -218,70 +185,98 @@ const CategoryManager: React.FC = () => {
                 viewMode === 'list' ? "bg-gold/20 text-gold" : "text-luxury-700 hover:text-gold"
               )}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="8" x2="21" y1="6" y2="6" /><line x1="8" x2="21" y1="12" y2="12" /><line x1="8" x2="21" y1="18" y2="18" /><line x1="3" x2="3.01" y1="6" y2="6" /><line x1="3" x2="3.01" y1="12" y2="12" /><line x1="3" x2="3.01" y1="18" y2="18" /></svg>
+              <List size={20} />
             </button>
           </div>
           
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="bg-gold hover:bg-gold-dark text-luxury-200">
-                <Plus size={16} className="mr-2" />
-                Tambah Kategori
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="bg-luxury-50 border-gold/20">
-              <DialogHeader>
-                <DialogTitle className="text-gold">Tambah Kategori Baru</DialogTitle>
-                <DialogDescription className="text-luxury-700">
-                  Masukkan detail kategori baru di bawah ini.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="space-y-4 py-4">
-                <div className="space-y-2">
-                  <Label htmlFor="store" className="text-white">Marketplace</Label>
-                  <select
-                    id="store"
-                    className="w-full px-3 py-2 border border-gold/20 rounded-md bg-luxury-100 text-white"
-                    value={newCategory.storeId}
-                    onChange={(e) => setNewCategory({...newCategory, storeId: e.target.value})}
-                  >
-                    {stores.map(store => (
-                      <option key={store.id} value={store.id}>{store.name}</option>
-                    ))}
-                  </select>
+          {activeTab === 'categories' && (
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button className="bg-gold hover:bg-gold-dark text-luxury-200">
+                  <Plus size={16} className="mr-2" />
+                  Tambah Kategori
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="bg-luxury-50 border-gold/20">
+                <DialogHeader>
+                  <DialogTitle className="text-gold">Tambah Kategori Baru</DialogTitle>
+                  <DialogDescription className="text-luxury-700">
+                    Masukkan detail kategori baru di bawah ini.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4 py-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="store" className="text-white">Marketplace</Label>
+                    <select
+                      id="store"
+                      className="w-full px-3 py-2 border border-gold/20 rounded-md bg-luxury-100 text-white"
+                      value={newCategory.storeId}
+                      onChange={(e) => setNewCategory({...newCategory, storeId: e.target.value})}
+                    >
+                      {stores.map(store => (
+                        <option key={store.id} value={store.id}>{store.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-white">Nama Kategori</Label>
+                    <Input
+                      id="name"
+                      placeholder="Masukkan nama kategori"
+                      value={newCategory.name}
+                      onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}
+                      className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="description" className="text-white">Deskripsi</Label>
+                    <Textarea
+                      id="description"
+                      placeholder="Masukkan deskripsi kategori"
+                      value={newCategory.description}
+                      onChange={(e) => setNewCategory({...newCategory, description: e.target.value})}
+                      className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
+                    />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-white">Nama Kategori</Label>
-                  <Input
-                    id="name"
-                    placeholder="Masukkan nama kategori"
-                    value={newCategory.name}
-                    onChange={(e) => setNewCategory({...newCategory, name: e.target.value})}
-                    className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="description" className="text-white">Deskripsi</Label>
-                  <Textarea
-                    id="description"
-                    placeholder="Masukkan deskripsi kategori"
-                    value={newCategory.description}
-                    onChange={(e) => setNewCategory({...newCategory, description: e.target.value})}
-                    className="bg-luxury-100 border-gold/20 text-white placeholder:text-luxury-700"
-                  />
-                </div>
-              </div>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline" className="border-gold/20 text-luxury-700 hover:text-white">Batal</Button>
-                </DialogClose>
-                <DialogClose asChild>
-                  <Button onClick={handleAddCategory} className="bg-gold hover:bg-gold-dark text-luxury-200">Simpan</Button>
-                </DialogClose>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline" className="border-gold/20 text-luxury-700 hover:text-white">Batal</Button>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <Button onClick={handleAddCategory} className="bg-gold hover:bg-gold-dark text-luxury-200">Simpan</Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          )}
         </div>
+      </div>
+
+      {/* Tab untuk memilih antara Kategori dan Produk */}
+      <div className="flex space-x-4 border-b border-gold/20 mb-6">
+        <button
+          onClick={() => setActiveTab('categories')}
+          className={cn(
+            "px-4 py-2 font-medium",
+            activeTab === 'categories' 
+              ? "border-b-2 border-gold text-gold" 
+              : "text-luxury-700 hover:text-gold"
+          )}
+        >
+          Kategori
+        </button>
+        <button
+          onClick={() => setActiveTab('products')}
+          className={cn(
+            "px-4 py-2 font-medium",
+            activeTab === 'products' 
+              ? "border-b-2 border-gold text-gold" 
+              : "text-luxury-700 hover:text-gold"
+          )}
+        >
+          Produk
+        </button>
       </div>
 
       {/* Tabs untuk kategori berdasarkan toko */}
@@ -293,7 +288,14 @@ const CategoryManager: React.FC = () => {
               value={store.id}
               className="flex items-center space-x-2 data-[state=active]:bg-gold/20 data-[state=active]:text-gold"
             >
-              <Store size={16} />
+              <img 
+                src={store.logo} 
+                alt={store.name}
+                className="w-4 h-4 object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/40/D4AF37/000000?text=S";
+                }}
+              />
               <span>{store.name}</span>
             </TabsTrigger>
           ))}
@@ -302,229 +304,48 @@ const CategoryManager: React.FC = () => {
         {stores.map(store => (
           <TabsContent key={store.id} value={store.id} className="mt-0">
             {/* Label untuk toko yang dipilih */}
-            <div className="flex items-center justify-between mb-4 pb-2 border-b border-gold/10">
-              <div className="flex items-center">
-                <Store size={18} className="text-gold mr-2" />
-                <h3 className="text-lg font-medium text-gold">{store.name}</h3>
-              </div>
-              <div className="text-sm text-luxury-700">
-                {categoriesByStore[store.id]?.length || 0} Kategori
+            <div className="flex items-center mb-4 pb-2 border-b border-gold/10">
+              <img 
+                src={store.logo} 
+                alt={store.name}
+                className="w-6 h-6 object-contain mr-2"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/40/D4AF37/000000?text=S";
+                }}
+              />
+              <h3 className="text-lg font-medium text-gold">{store.name}</h3>
+              <div className="text-sm text-luxury-700 ml-4">
+                {activeTab === 'categories' 
+                  ? `${categoriesByStore[store.id]?.length || 0} Kategori` 
+                  : `${getProductsByStoreAndCategory(store.id, activeCategory).length} Produk`
+                }
               </div>
             </div>
 
-            {/* Tampilan grid untuk kategori */}
-            {viewMode === 'grid' ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categoriesByStore[store.id]?.map(category => (
-                  <Card key={category.id} className="bg-luxury-50 border-gold/20 shadow-lg overflow-hidden">
-                    <CardHeader className="pb-2 border-b border-gold/10">
-                      <div className="flex justify-between items-start">
-                        <CardTitle className="text-gold">{category.name}</CardTitle>
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-gold hover:text-white hover:bg-luxury-100/50">
-                              <span className="sr-only">Open menu</span>
-                              <ChevronDown size={16} />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="bg-luxury-50 border-gold/20">
-                            <DropdownMenuLabel className="text-luxury-700">Aksi</DropdownMenuLabel>
-                            <Dialog>
-                              <DialogTrigger asChild>
-                                <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="text-white hover:bg-luxury-100/50 hover:text-gold">
-                                  Edit
-                                </DropdownMenuItem>
-                              </DialogTrigger>
-                              <DialogContent className="bg-luxury-50 border-gold/20">
-                                <DialogHeader>
-                                  <DialogTitle className="text-gold">Edit Kategori</DialogTitle>
-                                </DialogHeader>
-                                <div className="space-y-4 py-4">
-                                  <div className="space-y-2">
-                                    <Label htmlFor="edit-name" className="text-white">Nama Kategori</Label>
-                                    <Input
-                                      id="edit-name"
-                                      value={editingCategory?.name || category.name}
-                                      onChange={(e) => setEditingCategory({
-                                        ...category,
-                                        name: e.target.value
-                                      })}
-                                      onClick={() => !editingCategory && setEditingCategory(category)}
-                                      className="bg-luxury-100 border-gold/20 text-white"
-                                    />
-                                  </div>
-                                  <div className="space-y-2">
-                                    <Label htmlFor="edit-description" className="text-white">Deskripsi</Label>
-                                    <Textarea
-                                      id="edit-description"
-                                      value={editingCategory?.description || category.description}
-                                      onChange={(e) => setEditingCategory({
-                                        ...category,
-                                        description: e.target.value
-                                      })}
-                                      onClick={() => !editingCategory && setEditingCategory(category)}
-                                      className="bg-luxury-100 border-gold/20 text-white"
-                                    />
-                                  </div>
-                                </div>
-                                <DialogFooter>
-                                  <DialogClose asChild>
-                                    <Button
-                                      variant="outline"
-                                      onClick={() => setEditingCategory(null)}
-                                      className="border-gold/20 text-luxury-700 hover:text-white"
-                                    >
-                                      Batal
-                                    </Button>
-                                  </DialogClose>
-                                  <DialogClose asChild>
-                                    <Button onClick={handleUpdateCategory} className="bg-gold hover:bg-gold-dark text-luxury-200">Simpan</Button>
-                                  </DialogClose>
-                                </DialogFooter>
-                              </DialogContent>
-                            </Dialog>
-                            <Dialog>
-                              <DialogTrigger asChild>
-                                <DropdownMenuItem
-                                  className="text-red-400 focus:text-red-400 hover:bg-luxury-100/50"
-                                  onSelect={(e) => e.preventDefault()}
-                                >
-                                  Hapus
-                                </DropdownMenuItem>
-                              </DialogTrigger>
-                              <DialogContent className="bg-luxury-50 border-gold/20">
-                                <DialogHeader>
-                                  <DialogTitle className="text-gold">Hapus Kategori</DialogTitle>
-                                  <DialogDescription className="text-luxury-700">
-                                    Apakah Anda yakin ingin menghapus kategori "{category.name}" dari {getStoreNameById(category.storeId)}? Tindakan ini tidak dapat dibatalkan.
-                                  </DialogDescription>
-                                </DialogHeader>
-                                <DialogFooter>
-                                  <DialogClose asChild>
-                                    <Button variant="outline" className="border-gold/20 text-luxury-700 hover:text-white">Batal</Button>
-                                  </DialogClose>
-                                  <DialogClose asChild>
-                                    <Button
-                                      variant="destructive"
-                                      onClick={() => handleDeleteCategory(category)}
-                                      className="bg-red-500 hover:bg-red-600 text-white"
-                                    >
-                                      Hapus
-                                    </Button>
-                                  </DialogClose>
-                                </DialogFooter>
-                              </DialogContent>
-                            </Dialog>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="pt-4">
-                      <p className="text-sm text-luxury-700">{category.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            ) : (
-              // Tampilan list untuk kategori
-              <div className="space-y-2">
-                {categoriesByStore[store.id]?.map(category => (
-                  <div 
-                    key={category.id} 
-                    className="flex items-center justify-between bg-luxury-50 border border-gold/20 shadow-sm rounded-md p-4"
-                  >
-                    <div>
-                      <h4 className="font-medium text-gold">{category.name}</h4>
-                      <p className="text-sm text-luxury-700">{category.description}</p>
-                    </div>
-                    <div className="flex space-x-2">
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline" size="sm" className="border-gold/20 text-luxury-700 hover:text-gold hover:border-gold">
-                            Edit
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="bg-luxury-50 border-gold/20">
-                          <DialogHeader>
-                            <DialogTitle className="text-gold">Edit Kategori</DialogTitle>
-                          </DialogHeader>
-                          <div className="space-y-4 py-4">
-                            <div className="space-y-2">
-                              <Label htmlFor={`edit-name-${category.id}`} className="text-white">Nama Kategori</Label>
-                              <Input
-                                id={`edit-name-${category.id}`}
-                                value={editingCategory?.name || category.name}
-                                onChange={(e) => setEditingCategory({
-                                  ...category,
-                                  name: e.target.value
-                                })}
-                                onClick={() => !editingCategory && setEditingCategory(category)}
-                                className="bg-luxury-100 border-gold/20 text-white"
-                              />
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor={`edit-description-${category.id}`} className="text-white">Deskripsi</Label>
-                              <Textarea
-                                id={`edit-description-${category.id}`}
-                                value={editingCategory?.description || category.description}
-                                onChange={(e) => setEditingCategory({
-                                  ...category,
-                                  description: e.target.value
-                                })}
-                                onClick={() => !editingCategory && setEditingCategory(category)}
-                                className="bg-luxury-100 border-gold/20 text-white"
-                              />
-                            </div>
-                          </div>
-                          <DialogFooter>
-                            <DialogClose asChild>
-                              <Button
-                                variant="outline"
-                                onClick={() => setEditingCategory(null)}
-                                className="border-gold/20 text-luxury-700 hover:text-white"
-                              >
-                                Batal
-                              </Button>
-                            </DialogClose>
-                            <DialogClose asChild>
-                              <Button onClick={handleUpdateCategory} className="bg-gold hover:bg-gold-dark text-luxury-200">Simpan</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline" size="sm" className="border-red-400/30 text-red-400 hover:text-red-500 hover:border-red-500/30">
-                            Hapus
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="bg-luxury-50 border-gold/20">
-                          <DialogHeader>
-                            <DialogTitle className="text-gold">Hapus Kategori</DialogTitle>
-                            <DialogDescription className="text-luxury-700">
-                              Apakah Anda yakin ingin menghapus kategori "{category.name}" dari {getStoreNameById(category.storeId)}? Tindakan ini tidak dapat dibatalkan.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <DialogFooter>
-                            <DialogClose asChild>
-                              <Button variant="outline" className="border-gold/20 text-luxury-700 hover:text-white">Batal</Button>
-                            </DialogClose>
-                            <DialogClose asChild>
-                              <Button
-                                variant="destructive"
-                                onClick={() => handleDeleteCategory(category)}
-                                className="bg-red-500 hover:bg-red-600 text-white"
-                              >
-                                Hapus
-                              </Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            {/* Konten untuk tab Kategori */}
+            {activeTab === 'categories' && (
+              <CategoryView
+                categories={categoriesByStore[store.id] || []}
+                viewMode={viewMode}
+                editingCategory={editingCategory}
+                productsCount={(categoryName) => getProductsByStoreAndCategory(store.id, categoryName.toLowerCase()).length}
+                onCategoryClick={handleCategoryFilter}
+                onEditCategory={setEditingCategory}
+                onUpdateCategory={handleUpdateCategory}
+                onDeleteCategory={handleDeleteCategory}
+                setEditingCategory={setEditingCategory}
+              />
+            )}
+
+            {/* Konten untuk tab Produk */}
+            {activeTab === 'products' && (
+              <ProductManager
+                products={products}
+                categories={categoriesByStore[store.id] || []}
+                storeId={store.id}
+                viewMode={viewMode}
+                onUpdateProduct={handleUpdateProduct}
+              />
             )}
           </TabsContent>
         ))}
