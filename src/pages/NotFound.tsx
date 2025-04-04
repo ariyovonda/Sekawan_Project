@@ -1,5 +1,3 @@
-// src/pages/NotFound.tsx
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -9,7 +7,7 @@ const NotFound: React.FC = () => {
   const navigate = useNavigate();
 
   const goHome = () => {
-    navigate("/admin/dashboard");
+    navigate("/");
   };
 
   return (
