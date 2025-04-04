@@ -26,7 +26,7 @@ import LinkManager from "../components/dashboard/LinkManager";
 import ChangePw from "./ChangePw";
 
 // JWT decoding utility
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 // Komponen Dashboard
 const Dashboard: React.FC = () => {

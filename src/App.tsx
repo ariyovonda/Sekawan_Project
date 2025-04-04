@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,20 +7,15 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ServicesPageRayaGoldTrader from "./pages/ServicesPageRayaGoldTrader";
-import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-
 import AuthService from "./services/authService";
 
 // Protected Route Component
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isAuthenticated = AuthService.isTokenValid();
 
   if (!isAuthenticated) {
-    // Redirect to login if not authenticated
     return <Navigate to="/login" replace />;
   }
 
@@ -27,8 +23,21 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
 };
 
 function App() {
-  // Create a client inside the component to properly initialize React Query
   const [queryClient] = useState(() => new QueryClient());
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+    const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(userAgent);
+
+    if (!isMobileDevice) {
+      window.location.href = "https://google.com"; // Redirect jika bukan HP
+    } else {
+      setIsMobile(true);
+    }
+  }, []);
+
+  if (isMobile === null) return <div>Loading...</div>;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -38,20 +47,13 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route
-              path="/services/raya-gold-trader"
-              element={<ServicesPageRayaGoldTrader />}
-            />
-            <Route
-              path="/admin/*"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/login" element={<Login />} />            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/services/raya-gold-trader" element={<ServicesPageRayaGoldTrader />} />
+            <Route path="/admin/*" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/login" element={<Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
