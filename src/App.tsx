@@ -31,13 +31,14 @@ function App() {
     const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(userAgent);
 
     if (!isMobileDevice) {
-      window.location.href = "https://google.com"; // Redirect jika bukan HP
+      setIsMobile(false); // ❗ langsung render NotFound
     } else {
       setIsMobile(true);
     }
   }, []);
 
   if (isMobile === null) return <div>Loading...</div>;
+  if (isMobile === false) return <NotFound />; // ❗ tangani non-mobile langsung di sini
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -61,5 +62,6 @@ function App() {
     </QueryClientProvider>
   );
 }
+
 
 export default App;
