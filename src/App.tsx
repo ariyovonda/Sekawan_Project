@@ -10,7 +10,6 @@ import ServicesPageRayaGoldTrader from "./pages/ServicesPageRayaGoldTrader";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import AuthService from "./services/authService";
-import { Button } from "@/components/ui/button";
 import { AlertTriangle } from "lucide-react";
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
